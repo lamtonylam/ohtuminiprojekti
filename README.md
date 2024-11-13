@@ -1,4 +1,4 @@
 # ohtuminiprojekti
 
 Eka commit/ Sebastian
-Toka commit/ Hamed
+Toka commit/ Hamed Ebadi
