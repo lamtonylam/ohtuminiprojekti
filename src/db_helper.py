@@ -1,7 +1,7 @@
 from config import db, app
 from sqlalchemy import text
 
-table_name = "improceedings"
+table_name = "inproceedings"
 
 def table_exists(name):
   sql_table_existence = text(
