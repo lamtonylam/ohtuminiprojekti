@@ -28,7 +28,7 @@ create .env file with the following values
 For DATABASE_URL you can use either a local instance of postgres or hosted solution such as [aiven.io](aiven.io)
 
 ```
-DATABASE_URL=postgresql://DATABASE_NAME
+DATABASE_URL=postgresql:///DATABASE_NAME
 TEST_ENV=true
 SECRET_KEY=satunnainen_merkkijono
 ```
