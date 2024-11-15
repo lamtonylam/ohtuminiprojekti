@@ -4,6 +4,15 @@
 
 ### [Sprint backlog](https://helsinkifi-my.sharepoint.com/:x:/g/personal/bbsebast_ad_helsinki_fi/Ee2nabIYHuRJuohTCCOQPcYBBL0G3sMeIiiRyvB-SzPxGQ?e=jA78dm)
 
+## Definition of Done
+- Each user story has at least one test and it has been run successfully
+- The feature has been integrated, and documented extensively
+- The code has been reviewed by team
+- The code style is consistent
+- The requirements have been validated
+- The acceptance criteria has been met
+
+
 ## Local development
 
 Clone to local machine
