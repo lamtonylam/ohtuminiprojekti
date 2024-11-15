@@ -1,7 +1,8 @@
-class inproceedings:
+class Inproceedings:
     def __init__(
         self,
         id,
+        reference_id,
         created_at,
         author,
         title,
@@ -18,6 +19,7 @@ class inproceedings:
         publisher,
     ):
         self.id = id
+        self.reference_id = reference_id
         self.created_at = created_at
         self.author = author
         self.title = title
@@ -34,4 +36,4 @@ class inproceedings:
         self.publisher = publisher
 
     def __str__(self):
-        return f"{self.title}, {self.author}"
+        return f"Title: {self.title}, author: {self.author}"

@@ -12,18 +12,9 @@
 </div> #}
 
   <ul>
-    {% for todo in todos %}
+    {% for inproceeding in inproceedings %}
       <li style="display: flex">
-        <div>{{ todo }}</div>
-        {% if not todo.done %}
-          <form
-            action="/toggle_todo/{{ todo.id }}"
-            method="post"
-            style="margin-left: 10px;"
-          >
-            <button type="submit">mark as done</button>
-          </form>
-        {% endif %}
+        <div>{{ inproceeding }}</div>
       </li>
     {% endfor %}
   </ul>

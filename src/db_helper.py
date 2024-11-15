@@ -35,6 +35,7 @@ def setup_db():
   sql = text(
     f"CREATE TABLE {table_name} ("
     "  id SERIAL PRIMARY KEY, "
+    "  reference_id TEXT NOT NULL, "
     "  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, "
     "  author TEXT NOT NULL,"
     "  title TEXT NOT NULL, "
