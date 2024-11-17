@@ -6,6 +6,7 @@ ${SERVER}     localhost:5001
 ${DELAY}      0.5 seconds
 ${HOME_URL}   http://${SERVER}
 ${RESET_URL}  http://${SERVER}/reset_db
+${FORM_URL}   http://${SERVER}/new_todo
 ${BROWSER}    chrome
 ${HEADLESS}   false
 
@@ -27,3 +28,14 @@ Open And Configure Browser
 Reset Todos
     Go To  ${RESET_URL}
 
+Go To Starting Page
+    Go To  ${HOME_URL}
+
+Go To Form Page
+    Go To  ${FORM_URL}
+
+Starting Page Should Be Open
+    Title Should Be  References management app
+
+Form Page Should Be Open
+    Page Should Contain  Create a new improceedings reference
