@@ -56,7 +56,6 @@ def create_inproceeding(
                 VALUES (:reference_id, :author, :title, :booktitle, :year, :editor, :volume, 
                 :number, :series, :pages, :address, :month, :organization, :publisher)"""
     )
-    print(sql)
     db.session.execute(
         sql,
         {

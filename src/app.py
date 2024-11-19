@@ -45,7 +45,8 @@ def todo_creation():
     publisher = None if publisher == "" else publisher
 
     try:
-        validate_inproceeding(reference_id, author, title, booktitle, year)
+        # Inputs given as arguments to the validation function //found in util.py
+        validate_inproceeding(reference_id, author, title, booktitle, year, editor, volume, number, series, pages, address, month, organization, publisher)
         create_inproceeding(
             reference_id=reference_id,
             author=author,
