@@ -1,8 +1,9 @@
 from flask import redirect, render_template, request, jsonify, flash
 from db_helper import reset_db
 from repositories.inproceedings_repository import get_inproceedings, create_inproceeding
-from config import app, test_env
+from config import app, test_env, populate_env
 from util import validate_inproceeding
+from populate_test_data import populate_database
 
 
 @app.route("/")
@@ -77,3 +78,8 @@ if test_env:
     def reset_database():
         reset_db()
         return jsonify({"message": "db reset"})
+
+    if populate_env:
+        with app.app_context():
+            reset_db()
+            populate_database()

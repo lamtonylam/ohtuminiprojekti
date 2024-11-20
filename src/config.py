@@ -8,6 +8,7 @@ load_dotenv()
 
 test_env = getenv("TEST_ENV") == "true"
 print(f"Test environment: {test_env}")
+populate_env = getenv("POPULATE_TEST_DATA") == "true"
 
 app = Flask(__name__)
 app.secret_key = getenv("SECRET_KEY")
