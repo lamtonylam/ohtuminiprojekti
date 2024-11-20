@@ -3,14 +3,37 @@ class UserInputError(Exception):
 
 
 def validate_inproceeding(
-    reference_id, author, title, booktitle, year, editor=None, 
-    volume=None, number=None, series=None, pages=None, 
-    address=None, month=None, organization=None, publisher=None):
-    
+    reference_id,
+    author,
+    title,
+    booktitle,
+    year,
+    editor=None,
+    volume=None,
+    number=None,
+    series=None,
+    pages=None,
+    address=None,
+    month=None,
+    organization=None,
+    publisher=None,
+):
+
     # List of valid months
     months = [
-        "january", "february", "march", "april", "may", "june",
-        "july", "august", "september", "october", "november", "december"]
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+    ]
 
     # Validate required fields
     if not reference_id or not isinstance(reference_id, str) or len(reference_id) < 1:
@@ -30,18 +53,23 @@ def validate_inproceeding(
 
     if volume and int(volume) < 0:
         raise UserInputError("volume must be a positive integer.")
+    if volume and volume.isalpha():
+        raise UserInputError("volume must be a number")
 
     if number and int(number) < 0:
         raise UserInputError("number must be a positive integer.")
+    if number and number.isalpha():
+        raise UserInputError("number must be a number")
 
     for field_name, value in [
-        ("editor", editor), ("series", series), ("pages", pages), 
-        ("address", address), ("organization", organization), ("publisher", publisher)
+        ("editor", editor),
+        ("series", series),
+        ("pages", pages),
+        ("address", address),
+        ("organization", organization),
+        ("publisher", publisher),
     ]:
         if value and (not isinstance(value, str) or len(value) < 1):
-            raise UserInputError(f"{field_name} must be a non-empty string if provided.")
-
-    
-    
-   
-
+            raise UserInputError(
+                f"{field_name} must be a non-empty string if provided."
+            )
