@@ -18,6 +18,18 @@ Add a New Reference Successfully
     Starting Page Should Be Open
     Page Should Contain  Title: TestTitle, author: TestAuthor
 
+Adding a new reference without required fields fails
+    Go To Form Page
+    Form Page Should Be Open
+    Set Reference_id  TestId
+    Set Author  TestAuthor
+    Set Title  TestTitle
+    Set Booktitle  TestBooktitle
+    Set Editor  TestEditor
+    Submit Form
+    Go To Starting Page
+    Page Should Not Contain  Title: TestTitle, author: TestAuthor
+
 *** Keywords ***
 
 Set Reference_id
@@ -27,15 +39,22 @@ Set Reference_id
 Set Author
     [Arguments]  ${author}
     Input Text  author  ${author}
+
 Set Title
     [Arguments]  ${title}
     Input Text  title  ${title}
+
 Set Booktitle
     [Arguments]  ${booktitle}
     Input Text  booktitle  ${booktitle}
+
 Set Year
     [Arguments]  ${year}
-    Input Text  year    ${year}
+    Input Text  year  ${year}
+
+Set Editor
+    [Arguments]  ${editor}
+    Input Text  editor  ${editor}
 
 Submit Form
     Click Button  create
