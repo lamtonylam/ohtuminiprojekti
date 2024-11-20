@@ -12,13 +12,13 @@ def index():
     return render_template("index.html", inproceedings=inproceedings)
 
 
-@app.route("/new_todo")
+@app.route("/new_reference")
 def new():
-    return render_template("new_todo.html")
+    return render_template("new_reference.html")
 
 
-@app.route("/create_todo", methods=["POST"])
-def todo_creation():
+@app.route("/create_reference", methods=["POST"])
+def reference_creation():
     reference_id = request.form.get("reference_id")
     author = request.form.get("author")
     title = request.form.get("title")
@@ -67,7 +67,7 @@ def todo_creation():
         return redirect("/")
     except Exception as error:
         flash(str(error))
-        return redirect("/new_todo")
+        return redirect("/new_reference")
 
 
 # testausta varten oleva reitti

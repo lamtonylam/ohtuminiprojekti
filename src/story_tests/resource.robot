@@ -6,7 +6,7 @@ ${SERVER}     localhost:5001
 ${DELAY}      0.5 seconds
 ${HOME_URL}   http://${SERVER}
 ${RESET_URL}  http://${SERVER}/reset_db
-${FORM_URL}   http://${SERVER}/new_todo
+${FORM_URL}   http://${SERVER}/new_reference
 ${BROWSER}    chrome
 ${HEADLESS}   false
 
@@ -25,7 +25,7 @@ Open And Configure Browser
     END
     Open Browser  browser=${BROWSER}  options=${options}
 
-Reset Todos
+Reset References
     Go To  ${RESET_URL}
 
 Go To Starting Page
