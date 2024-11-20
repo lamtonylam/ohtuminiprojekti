@@ -2,7 +2,7 @@
 Resource  resource.robot
 Suite Setup      Open And Configure Browser
 Suite Teardown   Close Browser
-Test Setup       Reset Todos
+Test Setup       Reset References
 
 *** Test Cases ***
 Navigate to Home Page
