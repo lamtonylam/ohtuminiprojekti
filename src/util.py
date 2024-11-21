@@ -54,7 +54,8 @@ def validate_inproceeding(
         raise UserInputError("year must be a valid integer between 1 and current year.")
 
     # Validate optional fields
-    should_be_str("month", month)
+    if month:
+        should_be_str("month", month)
     if month and (month.lower() not in months):
         raise UserInputError(f"month must be one of: {', '.join(months)}.")
     
@@ -69,4 +70,5 @@ def validate_inproceeding(
         ("organization", organization),
         ("publisher", publisher),
     ]:
-        should_be_str(field_name, value)
+        if value:
+            should_be_str(field_name, value)
