@@ -34,6 +34,32 @@ class Inproceedings:
         self.month = month
         self.organization = organization
         self.publisher = publisher
+    
+    # returns a dictionary of the class types
+    # left out self.id, self.created_at as they are not relevant in bibtex generation
+    def to_dict(self):
+        fields = {
+            "author": self.author,
+            "year": self.year,
+            "title": self.title,
+            "booktitle": self.booktitle,
+            "editor": self.editor,
+            "volume": self.volume,
+            "number": self.number,
+            "series": self.series,
+            "pages": self.pages,
+            "address": self.address,
+            "month": self.month,
+            "organization": self.organization,
+            "publisher": self.publisher,
+        }
+
+        result = {}
+        for key, value in fields.items():
+            if value is not None:
+                result[key] = value
+
+        return result
 
     def __str__(self):
         return f"Title: {self.title}, author: {self.author}"

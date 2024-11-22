@@ -1,25 +1,29 @@
-from flask import redirect, render_template, request, jsonify, flash
+from flask import redirect, render_template, request, jsonify, flash, send_file
 from db_helper import reset_db
 from repositories.inproceedings_repository import get_inproceedings, create_inproceeding
 from config import app, test_env, populate_env
 from util import validate_inproceeding
 from populate_test_data import populate_database
+from bibtex_parser import inproceeding_bibtex_parser
 
 
 @app.route("/")
 def index():
     inproceedings = get_inproceedings()
-    # return render_template("index.html", todos=todos, unfinished=unfinished)
     return render_template("index.html", inproceedings=inproceedings)
+
+
+# get a preview of the bibtex
+@app.route("/preview")
+def bibtexpreview():
+    return render_template(
+        "bibtex.html", inproceedings_list_bibtex=inproceeding_bibtex_parser()
+    )
 
 
 @app.route("/new_reference")
 def new():
     return render_template("new_reference.html")
-
-@app.route("/preview")
-def preview():
-    return render_template("preview.html")
 
 
 @app.route("/create_reference", methods=["POST"])
@@ -44,8 +48,38 @@ def reference_creation():
 
     try:
         # Inputs given as arguments to the validation function //found in util.py
-        validate_inproceeding(reference_id, author, title, booktitle, year, editor, volume, number, series, pages, address, month, organization, publisher)
-        create_inproceeding(reference_id, author, title, booktitle, year, editor, volume, number, series, pages, address, month, organization, publisher)
+        validate_inproceeding(
+            reference_id,
+            author,
+            title,
+            booktitle,
+            year,
+            editor,
+            volume,
+            number,
+            series,
+            pages,
+            address,
+            month,
+            organization,
+            publisher,
+        )
+        create_inproceeding(
+            reference_id,
+            author,
+            title,
+            booktitle,
+            year,
+            editor,
+            volume,
+            number,
+            series,
+            pages,
+            address,
+            month,
+            organization,
+            publisher,
+        )
         flash("Added succesfully")
         return redirect("/")
     except Exception as error:
@@ -53,12 +87,16 @@ def reference_creation():
         return redirect("/new_reference")
 
 
-@app.route("/download", methods=["POST"])
-def download():
-    flash("Function is not ready")
-    return redirect("/")
 
-
+@app.route("/download")
+def getBibtexFile():
+    bibtexFile = "bibtex.txt"
+    return send_file(
+        bibtexFile,
+        mimetype="text",
+        download_name='references.bib',
+        as_attachment=True
+        )
 
 # testausta varten oleva reitti
 if test_env:
