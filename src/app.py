@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, jsonify, flash
+from flask import redirect, render_template, request, jsonify, flash, send_file
 from db_helper import reset_db
 from repositories.inproceedings_repository import get_inproceedings, create_inproceeding
 from config import app, test_env, populate_env
@@ -58,7 +58,15 @@ def download():
     flash("Function is not ready")
     return redirect("/")
 
-
+@app.route("/download")
+def getBibtexFile():
+    bibtexFile = "bibtex.txt"
+    return send_file(
+        bibtexFile,
+        mimetype="text",
+        download_name='references.bib',
+        as_attachment=True
+        )
 
 # testausta varten oleva reitti
 if test_env:
