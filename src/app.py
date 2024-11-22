@@ -9,8 +9,22 @@ from populate_test_data import populate_database
 @app.route("/")
 def index():
     inproceedings = get_inproceedings()
-    # return render_template("index.html", todos=todos, unfinished=unfinished)
     return render_template("index.html", inproceedings=inproceedings)
+
+
+@app.route("/preview-bibtex")
+def bibtexpreview():
+    inproceedings = get_inproceedings()
+
+    inproceedings_list_bibtex = []
+    for i in inproceedings:
+        bibtex = f"@inproceedings{{{i.reference_id}}}, \n" + f"        title = {{{i.title}}},"
+
+        inproceedings_list_bibtex.append(bibtex)
+
+    return render_template(
+        "bibtex.html", inproceedings_list_bibtex=inproceedings_list_bibtex
+    )
 
 
 @app.route("/new_reference")
@@ -47,7 +61,22 @@ def reference_creation():
 
     try:
         # Inputs given as arguments to the validation function //found in util.py
-        validate_inproceeding(reference_id, author, title, booktitle, year, editor, volume, number, series, pages, address, month, organization, publisher)
+        validate_inproceeding(
+            reference_id,
+            author,
+            title,
+            booktitle,
+            year,
+            editor,
+            volume,
+            number,
+            series,
+            pages,
+            address,
+            month,
+            organization,
+            publisher,
+        )
         create_inproceeding(
             reference_id=reference_id,
             author=author,
