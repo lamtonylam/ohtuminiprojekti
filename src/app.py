@@ -59,10 +59,10 @@ def download():
     return redirect("/")
 
 @app.route("/download")
-def getBibtexFile():
-    bibtexFile = "bibtex.txt"
+def get_bibtex_file():
+    bibtex_file = "bibtex.txt"
     return send_file(
-        bibtexFile,
+        bibtex_file,
         mimetype="text",
         download_name='references.bib',
         as_attachment=True
