@@ -58,7 +58,7 @@ def validate_inproceeding(
         should_be_str("month", month)
     if month and (month.lower() not in months):
         raise UserInputError(f"month must be one of: {', '.join(months)}.")
-    
+
     should_be_valid_positive_int("volume", volume)
     should_be_valid_positive_int("number", number)
 
