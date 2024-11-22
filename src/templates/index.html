@@ -1,29 +1,41 @@
 {% extends "layout.html" %}
 
 {% block title %}
-  References management app
+  References Management App
 {% endblock %}
 
 {% block body %}
-  <h2>References management app</h2>
-
-  {# <div>
-  things still unfinished: {{ unfinished }}
-</div> #}
-
-  <ul>
-    {% for inproceeding in inproceedings %}
-      <li style="display: flex">
-        <div>{{ inproceeding }}</div>
-      </li>
-    {% endfor %}
-  </ul>
-
+  <h2>References Management App</h2>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Reference ID</th>
+          <th>Author</th>
+          <th>Title</th>
+          <th>Booktitle</th>
+          <th>Year</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for inproceeding in inproceedings %}
+          <tr>
+            <td>{{ inproceeding.reference_id }}</td>
+            <td>{{ inproceeding.author }}</td>
+            <td>{{ inproceeding.title }}</td>
+            <td>{{ inproceeding.booktitle }}</td>
+            <td>{{ inproceeding.year }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
   <div>
-        <a href="/new_reference">Create a new inproceedings reference</a>
-        <form action="/download" method="POST"><br>
-          <button type="submit" name="download">Download</button><br>
-        </form><br>
-        <a href="/preview">Preview</a>
+    <a href="/new_reference" class="button-link">Create a New Inproceedings Reference</a>
+    <form action="/download" method="POST" style="display: block;">
+      <button type="submit" name="download" class="button">Download</button>
+    </form>
+    <a href="/preview" class="button-link">Preview</a>
   </div>
 {% endblock %}
