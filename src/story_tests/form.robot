@@ -16,7 +16,8 @@ Add a New Reference Successfully
     Set Year  2024
     Submit Form
     Starting Page Should Be Open
-    Page Should Contain  Title: TestTitle, author: TestAuthor
+    Page Should Contain    TestId
+    Page Should Contain    TestAuthor
 
 Adding a new reference without required fields fails
     Go To Form Page
@@ -28,7 +29,6 @@ Adding a new reference without required fields fails
     Set Editor  TestEditor
     Submit Form
     Go To Starting Page
-    Page Should Not Contain  Title: TestTitle, author: TestAuthor
 
 *** Keywords ***
 

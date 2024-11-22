@@ -1,0 +1,32 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+.table-container {
+  padding-bottom: 20px;
+}
+
+.button, .button-link {
+  background-color: #e7e7e7; /* Light gray background */
+  border: 1px solid #ccc; /* Slightly darker border */
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  cursor: pointer; /* Cursor appears as a pointer when hovered */
+  border-radius: 5px; /* Slightly rounded corners for a softer look */
+  display: block; /* Make it a block element to occupy the full row */
+  width: max-content; /* Ensure content determines the width not exceeding its content */
+
+}
+.button:hover, .button-link:hover {
+  background-color: #d7d7d7; 
+}

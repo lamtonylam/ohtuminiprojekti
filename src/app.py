@@ -88,6 +88,7 @@ def reference_creation():
 
 # When user clicks download button, get references as string and download as .bib file
 @app.route("/download")
+
 def getBibtexFile():
     bibtex_str = inproceeding_bibtex_parser()
     return Response(

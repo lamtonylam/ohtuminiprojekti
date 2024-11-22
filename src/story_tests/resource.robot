@@ -35,7 +35,7 @@ Go To Form Page
     Go To  ${FORM_URL}
 
 Starting Page Should Be Open
-    Title Should Be  References management app
+    Title Should Be  References Management App
 
 Form Page Should Be Open
     Page Should Contain  Create a new improceedings reference
