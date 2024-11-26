@@ -1,4 +1,4 @@
-from flask import redirect, render_template, request, jsonify, flash, send_file, Response
+from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.inproceedings_repository import get_inproceedings, create_inproceeding
 from config import app, test_env, populate_env
@@ -87,8 +87,9 @@ def reference_creation():
         return redirect("/new_reference")
 
 # When user clicks download button, get references as string and download as .bib file
-@app.route("/download")
 
+
+@app.route("/download")
 def getBibtexFile():
     bibtex_str = inproceeding_bibtex_parser()
     return Response(
@@ -96,6 +97,7 @@ def getBibtexFile():
         mimetype="text/plain",
         headers={'Content-disposition': 'attachment; filename=references.bib'}
     )
+
 
 # testausta varten oleva reitti
 if test_env:
