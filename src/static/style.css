@@ -2,14 +2,17 @@ table {
   width: 100%;
   border-collapse: collapse;
 }
+
 th, td {
   border: 1px solid black;
   padding: 8px;
   text-align: left;
 }
+
 th {
   background-color: #f2f2f2;
 }
+
 .table-container {
   padding-bottom: 20px;
 }
@@ -21,12 +24,22 @@ th {
   text-decoration: none;
   color: black;
   font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
   cursor: pointer; /* Cursor appears as a pointer when hovered */
   border-radius: 5px; /* Slightly rounded corners for a softer look */
   display: block; /* Make it a block element to occupy the full row */
   width: max-content; /* Ensure content determines the width not exceeding its content */
 
 }
+
+#form-button {
+  display: block;
+}
+
 .button:hover, .button-link:hover {
   background-color: #d7d7d7; 
+}
+
+.optionalfield {
+  font-style: italic;
 }
