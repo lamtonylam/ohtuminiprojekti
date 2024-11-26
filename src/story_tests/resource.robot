@@ -46,5 +46,5 @@ Form Page Should Be Open
     Page Should Contain  Create a new improceedings reference
 
 Preview Page Should Be Open
-    Page Should Contain  Back to frontpage
+    Page Should Contain  Preview
 #??? page doesent contain anythin for now
