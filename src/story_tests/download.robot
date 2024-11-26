@@ -16,6 +16,7 @@ Download Bibtex File
     ...    download.prompt_for_download=False
     ...    download.directory_upgrade=True
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys
+    Call Method    ${options}    add_argument    --headless
     Call Method    ${options}    add_experimental_option    prefs    ${prefs}
     Open Browser   http://localhost:5001/    Chrome    options=${options} 
     Click Button  download
