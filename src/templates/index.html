@@ -15,6 +15,15 @@
           <th>Title</th>
           <th>Booktitle</th>
           <th>Year</th>
+          <th>Editor</th>
+          <th>Volume</th>
+          <th>Number</th>
+          <th>Series</th>
+          <th>Pages</th>
+          <th>Address</th>
+          <th>Month</th>
+          <th>Organization</th>
+          <th>Publisher</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +34,15 @@
             <td>{{ inproceeding.title }}</td>
             <td>{{ inproceeding.booktitle }}</td>
             <td>{{ inproceeding.year }}</td>
+            <td class="optionalfield">{{ inproceeding.editor }}</td>
+            <td class="optionalfield">{{ inproceeding.volume }}</td>
+            <td class="optionalfield">{{ inproceeding.number }}</td>
+            <td class="optionalfield">{{ inproceeding.series }}</td>
+            <td class="optionalfield">{{ inproceeding.pages }}</td>
+            <td class="optionalfield">{{ inproceeding.address }}</td>
+            <td class="optionalfield">{{ inproceeding.month }}</td>
+            <td class="optionalfield">{{ inproceeding.organization }}</td>
+            <td class="optionalfield">{{ inproceeding.publisher }}</td>
           </tr>
         {% endfor %}
       </tbody>
