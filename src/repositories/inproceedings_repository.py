@@ -6,9 +6,12 @@ from entities.inproceedings import Inproceedings
 
 def get_inproceedings():
     result = db.session.execute(
-        text(
-            "SELECT id, reference_id, created_at, author, title, booktitle, year, editor, volume, number, series, pages, address, month, organization, publisher FROM inproceedings"
-        )
+        text("""
+            SELECT id, reference_id, created_at, author, title, 
+            booktitle, year, editor, volume, number, series, 
+            pages, address, month, organization, publisher 
+            FROM inproceedings
+        """)
     )
     inproceedings_result = result.fetchall()
     return [

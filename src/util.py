@@ -1,7 +1,9 @@
 import datetime
 
+
 class UserInputError(Exception):
     pass
+
 
 def validate_inproceeding(
     reference_id,
@@ -51,7 +53,8 @@ def validate_inproceeding(
 
     should_be_valid_positive_int("year", year)
     if int(year) > datetime.date.today().year:
-        raise UserInputError("year must be a valid integer between 1 and current year.")
+        raise UserInputError(
+            "year must be a valid integer between 1 and current year.")
 
     # Validate optional fields
     if month:

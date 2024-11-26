@@ -5,6 +5,7 @@ from sqlalchemy import text
 
 table_name = "inproceedings"
 
+
 def populate_database():
     sql = text(f"""
             INSERT INTO {table_name} (

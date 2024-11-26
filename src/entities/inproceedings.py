@@ -1,7 +1,7 @@
 class Inproceedings:
     def __init__(
         self,
-        id,
+        ref_id,
         reference_id,
         created_at,
         author,
@@ -18,7 +18,7 @@ class Inproceedings:
         organization,
         publisher,
     ):
-        self.id = id
+        self.id = ref_id
         self.reference_id = reference_id
         self.created_at = created_at
         self.author = author
@@ -34,7 +34,7 @@ class Inproceedings:
         self.month = month
         self.organization = organization
         self.publisher = publisher
-    
+
     # returns a dictionary of the class types
     # left out self.id, self.created_at as they are not relevant in bibtex generation
     def to_dict(self):

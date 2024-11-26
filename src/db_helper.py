@@ -3,6 +3,7 @@ from config import db, app
 
 table_name = "inproceedings"
 
+
 def table_exists(name):
     sql_table_existence = text(
         "SELECT EXISTS ("
@@ -18,11 +19,13 @@ def table_exists(name):
     result = db.session.execute(sql_table_existence)
     return result.fetchall()[0][0]
 
+
 def reset_db():
     print(f"Clearing contents from table {table_name}")
     sql = text(f"DELETE FROM {table_name}")
     db.session.execute(sql)
     db.session.commit()
+
 
 def setup_db():
     if table_exists(table_name):
@@ -49,12 +52,13 @@ def setup_db():
         "  address TEXT, "
         "  month TEXT, "
         "  organization TEXT, "
-        "  publisher TEXT"    
+        "  publisher TEXT"
         ")"
     )
 
     db.session.execute(sql)
     db.session.commit()
+
 
 if __name__ == "__main__":
     with app.app_context():
