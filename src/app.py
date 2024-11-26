@@ -17,7 +17,7 @@ def index():
 @app.route("/preview")
 def bibtexpreview():
     return render_template(
-        "bibtex.html", inproceedings_list_bibtex=inproceeding_bibtex_parser()
+        "preview.html", inproceedings_list_bibtex=inproceeding_bibtex_parser()
     )
 
 
