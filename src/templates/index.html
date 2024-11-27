@@ -34,15 +34,15 @@
             <td>{{ inproceeding.title }}</td>
             <td>{{ inproceeding.booktitle }}</td>
             <td>{{ inproceeding.year }}</td>
-            <td class="optionalfield">{{ inproceeding.editor }}</td>
-            <td class="optionalfield">{{ inproceeding.volume }}</td>
-            <td class="optionalfield">{{ inproceeding.number }}</td>
-            <td class="optionalfield">{{ inproceeding.series }}</td>
-            <td class="optionalfield">{{ inproceeding.pages }}</td>
-            <td class="optionalfield">{{ inproceeding.address }}</td>
-            <td class="optionalfield">{{ inproceeding.month }}</td>
-            <td class="optionalfield">{{ inproceeding.organization }}</td>
-            <td class="optionalfield">{{ inproceeding.publisher }}</td>
+            <td class="optionalfield">{{ inproceeding.editor or "-"}}</td>
+            <td class="optionalfield">{{ inproceeding.volume or "-"}}</td>
+            <td class="optionalfield">{{ inproceeding.number or "-"}}</td>
+            <td class="optionalfield">{{ inproceeding.series or "-"}}</td>
+            <td class="optionalfield">{{ inproceeding.pages or "-"}}</td>
+            <td class="optionalfield">{{ inproceeding.address or "-"}}</td>
+            <td class="optionalfield">{{ inproceeding.month or "-"}}</td>
+            <td class="optionalfield">{{ inproceeding.organization or "-"}}</td>
+            <td class="optionalfield">{{ inproceeding.publisher or "-"}}</td>
           </tr>
         {% endfor %}
       </tbody>
@@ -54,6 +54,6 @@
         <form action="/download" method="GET" style="display: block;"><br>
       <button type="submit" name="download" class="button">Download</button>
         </form><br>
-        <a href="/preview" id="button_to_preview">Preview</a>
+        <a href="/preview" class="button-link" id="button_to_preview">Preview</a>
   </div>
 {% endblock %}
