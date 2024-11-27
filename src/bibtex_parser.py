@@ -22,6 +22,4 @@ def inproceeding_bibtex_parser():
         # line breaks for references
         bibtex = bibtex + "\n}\n\n"
 
-    print(bibtex)
-
     return bibtex
