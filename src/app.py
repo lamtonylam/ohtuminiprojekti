@@ -94,6 +94,9 @@ def getBibtexFile():
     inproceedings = get_inproceedings()
     bibtex_str = inproceeding_bibtex_parser(inproceedings)
 
+    if not bibtex_str:
+        flash("There are no references to download.")
+        return redirect("/")
     return Response(
         bibtex_str,
         mimetype="text/plain",
