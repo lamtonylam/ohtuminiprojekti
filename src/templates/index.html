@@ -56,4 +56,11 @@
         </form><br>
         <a href="/preview" class="button-link" id="button_to_preview">Preview</a>
   </div>
+  {% with messages = get_flashed_messages() %}{% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+  {% endif %}{% endwith %}
 {% endblock %}
