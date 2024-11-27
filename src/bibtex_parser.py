@@ -1,9 +1,4 @@
-from repositories.inproceedings_repository import get_inproceedings
-
-
-def inproceeding_bibtex_parser():
-    inproceedings = get_inproceedings()
-
+def inproceeding_bibtex_parser(inproceedings):
     bibtex = ""
     for i in inproceedings:
         inproceedings_dict = i.to_dict()
