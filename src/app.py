@@ -16,8 +16,9 @@ def index():
 # get a preview of the bibtex
 @app.route("/preview")
 def bibtexpreview():
+    inproceedings = get_inproceedings()  
     return render_template(
-        "preview.html", inproceedings_list_bibtex=inproceeding_bibtex_parser()
+        "preview.html", inproceedings_list_bibtex=inproceeding_bibtex_parser(inproceedings)
     )
 
 
@@ -90,7 +91,10 @@ def reference_creation():
 # When user clicks download button, get references as string and download as .bib file
 @app.route("/download")
 def getBibtexFile():
-    bibtex_str = inproceeding_bibtex_parser()
+    inproceedings = get_inproceedings()  
+    print(inproceedings)  
+    bibtex_str = inproceeding_bibtex_parser(inproceedings)
+
     return Response(
         bibtex_str,
         mimetype="text/plain",
