@@ -48,3 +48,27 @@ Form Page Should Be Open
 Preview Page Should Be Open
     Page Should Contain  Preview
 #??? page doesent contain anythin for now
+
+Set Reference_id
+    [Arguments]  ${reference_id}
+    Input Text  reference_id  ${reference_id}
+
+Set Author
+    [Arguments]  ${author}
+    Input Text  author  ${author}
+
+Set Title
+    [Arguments]  ${title}
+    Input Text  title  ${title}
+
+Set Booktitle
+    [Arguments]  ${booktitle}
+    Input Text  booktitle  ${booktitle}
+
+Set Year
+    [Arguments]  ${year}
+    Input Text  year  ${year}
+
+Set Editor
+    [Arguments]  ${editor}
+    Input Text  editor  ${editor}

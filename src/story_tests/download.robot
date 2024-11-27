@@ -10,6 +10,18 @@ ${BIBTEX_FILE}    references.bib
 
 *** Test Cases ***
 Download Bibtex File
+    Go To Form Page
+    Form Page Should Be Open
+    Set Reference_id  TestId
+    Set Author  TestAuthor
+    Set Title  TestTitle
+    Set Booktitle  TestBooktitle
+    Set Year  2024
+    Click Button  create
+    Starting Page Should Be Open
+    Page Should Contain    TestId
+    Page Should Contain    TestAuthor
+
     Go To Starting Page
     ${prefs}=    Create Dictionary
     ...    download.default_directory=${DOWNLOAD_DIR}
