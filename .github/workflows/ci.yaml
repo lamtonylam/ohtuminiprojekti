@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: poetry install  --no-root
       - name: Run unit tests
-        run: poetry run pytest src/tests
+        run: poetry run pytest src/tests/*
       - name: run pylint
         run: poetry run pylint src/
       - name: Setup chromedriver
