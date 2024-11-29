@@ -1,7 +1,7 @@
 from sqlalchemy import text
 from config import db, app
 
-table_name = "inproceedings"
+table_name = "reference"
 
 
 def table_exists(name):
@@ -34,28 +34,12 @@ def setup_db():
         db.session.execute(sql)
         db.session.commit()
 
+    schema = open("./schema.sql", "r")
+    sql = text(schema.read())
+    schema.close()
+    
     print(f"Creating table {table_name}")
-    sql = text(
-        f"CREATE TABLE {table_name} ("
-        "  id SERIAL PRIMARY KEY, "
-        "  reference_id TEXT NOT NULL, "
-        "  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, "
-        "  author TEXT NOT NULL,"
-        "  title TEXT NOT NULL, "
-        "  booktitle TEXT NOT NULL, "
-        "  year INTEGER NOT NULL, "
-        "  editor TEXT, "
-        "  volume INTEGER ,"
-        "  number INTEGER, "
-        "  series TEXT, "
-        "  pages TEXT, "
-        "  address TEXT, "
-        "  month TEXT, "
-        "  organization TEXT, "
-        "  publisher TEXT"
-        ")"
-    )
-
+    
     db.session.execute(sql)
     db.session.commit()
 

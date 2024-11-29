@@ -1,0 +1,21 @@
+CREATE TABLE reference (
+    id SERIAL PRIMARY KEY,
+    reference_id TEXT NOT NULL,
+    reference_type TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    title TEXT NOT NULL,
+    author TEXT,
+    year INTEGER,
+    publisher TEXT,
+    address TEXT,
+    journal TEXT,
+    volume TEXT,
+    number TEXT,
+    pages TEXT,
+    month TEXT,
+    note TEXT,
+    booktitle TEXT,
+    editor TEXT,
+    series TEXT,
+    organization TEXT
+);
