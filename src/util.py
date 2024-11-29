@@ -5,8 +5,9 @@ class UserInputError(Exception):
     pass
 
 
-def validate_inproceeding(
+def validate_reference(
     reference_id,
+    reference_type,
     author,
     title,
     booktitle,
@@ -20,6 +21,8 @@ def validate_inproceeding(
     month,
     organization,
     publisher,
+    journal,
+    note
 ):
     def should_be_str(param_name, value):
         if not value or not isinstance(value, str) or len(value) < 1:
@@ -56,7 +59,7 @@ def validate_inproceeding(
         raise UserInputError(
             "year must be a valid integer between 1 and current year.")
 
-    # Validate optional fields
+    # Validate optional fieldsef validate_inproceeding():
     if month:
         should_be_str("month", month)
     if month and (month.lower() not in months):

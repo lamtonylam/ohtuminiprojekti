@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.inproceedings_repository import get_inproceedings, create_inproceeding
 from config import app, test_env, populate_env
-from util import validate_inproceeding
+from util import validate_reference
 from populate_test_data import populate_database
 from bibtex_parser import inproceeding_bibtex_parser
 
@@ -41,6 +41,11 @@ def reference_creation():
     volume = request.form.get("volume") or None
     number = request.form.get("number") or None
     series = request.form.get("series") or None
+
+    reference_type = "book"
+    journal = "Life"
+    note = "Hello world"
+
     pages = request.form.get("pages") or None
     address = request.form.get("address") or None
     month = request.form.get("month") or None
@@ -49,8 +54,9 @@ def reference_creation():
 
     try:
         # Inputs given as arguments to the validation function //found in util.py
-        validate_inproceeding(
+        validate_reference(
             reference_id,
+            reference_type,
             author,
             title,
             booktitle,
@@ -64,9 +70,12 @@ def reference_creation():
             month,
             organization,
             publisher,
+            journal,
+            note
         )
-        create_inproceeding(
+        create_reference(
             reference_id,
+            reference_type,
             author,
             title,
             booktitle,
@@ -80,6 +89,8 @@ def reference_creation():
             month,
             organization,
             publisher,
+            journal,
+            note
         )
         flash("Added succesfully")
         return redirect("/")
