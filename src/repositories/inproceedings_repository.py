@@ -7,10 +7,9 @@ from entities.inproceedings import Inproceedings
 def get_inproceedings():
     result = db.session.execute(
         text("""
-            SELECT id, reference_id, created_at, author, title, 
-            booktitle, year, editor, volume, number, series, 
-            pages, address, month, organization, publisher 
-            FROM inproceedings
+            SELECT reference_id, reference_type, title, author, year, publisher, address, journal, volume, 
+                number, pages, month, note, booktitle, editor, series, organization
+            FROM reference
         """)
     )
     inproceedings_result = result.fetchall()
@@ -37,45 +36,51 @@ def get_inproceedings():
     ]
 
 
-def create_inproceeding(
+def create_reference(
     reference_id,
-    author,
+    reference_type,
     title,
-    booktitle,
+    author,
     year,
+    booktitle=None,
     editor=None,
     volume=None,
     number=None,
     series=None,
     pages=None,
     address=None,
+    journal=None,
     month=None,
+    note=None,
     organization=None,
     publisher=None,
 ):
     sql = text(
-        """INSERT INTO inproceedings (reference_id, author, title, booktitle, year, 
-                editor, volume, number, series, pages, address, month, organization, publisher) 
-                VALUES (:reference_id, :author, :title, :booktitle, :year, :editor, :volume, 
-                :number, :series, :pages, :address, :month, :organization, :publisher)"""
+        """INSERT INTO reference (reference_id, reference_type, title, author, year, publisher, address, journal, volume, 
+                number, pages, month, note, booktitle, editor, series, organization) 
+                VALUES (:reference_id, :reference_type, :title, :author, :year, :publisher, :address, :journal, :volume, 
+                :number, :pages, :month, :note, :booktitle, :editor, :series, :organization)"""
     )
     db.session.execute(
         sql,
         {
             "reference_id": reference_id,
-            "author": author,
+            "reference_type": reference_type,
             "title": title,
-            "booktitle": booktitle,
+            "author": author,
             "year": int(year),
-            "editor": editor,
+            "publisher": publisher,
+            "address": address,
+            "journal": journal,
             "volume": volume,
             "number": number,
-            "series": series,
             "pages": pages,
-            "address": address,
             "month": month,
-            "organization": organization,
-            "publisher": publisher,
+            "note": note,
+            "booktitle": booktitle,
+            "editor": editor,
+            "series": series,
+            "organization": organization
         },
     )
     db.session.commit()

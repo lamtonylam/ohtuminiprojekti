@@ -1,8 +1,8 @@
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
-from repositories.inproceedings_repository import get_inproceedings, create_inproceeding
+from repositories.inproceedings_repository import get_inproceedings, create_reference
 from config import app, test_env, populate_env
-from util import validate_reference
+from util import validate_book, validate_article, validate_inproceedings
 from populate_test_data import populate_database
 from bibtex_parser import inproceeding_bibtex_parser
 
@@ -51,28 +51,48 @@ def reference_creation():
     month = request.form.get("month") or None
     organization = request.form.get("organization") or None
     publisher = request.form.get("publisher") or None
-
     try:
+        if reference_type == "article":
+            validate_article(
+                reference_id,
+                author,
+                title,
+                journal,
+                year,
+                volume,
+                number,
+                pages,
+                month,
+                note
+            )
+
+        elif reference_type == "book":
+            validate_book(
+                author,
+                year,
+                title,
+                publisher,
+                address
+            )
+            
+        elif reference_type == "inproceedings":
+            validate_inproceedings(
+                author,
+                title,
+                booktitle,
+                year,
+                editor,
+                volume,
+                number,
+                series,
+                pages,
+                address,
+                month,
+                organization,
+                publisher
+            )
+
         # Inputs given as arguments to the validation function //found in util.py
-        validate_reference(
-            reference_id,
-            reference_type,
-            author,
-            title,
-            booktitle,
-            year,
-            editor,
-            volume,
-            number,
-            series,
-            pages,
-            address,
-            month,
-            organization,
-            publisher,
-            journal,
-            note
-        )
         create_reference(
             reference_id,
             reference_type,
