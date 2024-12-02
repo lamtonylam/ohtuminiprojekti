@@ -74,6 +74,7 @@ def validate_book(
     publisher,
     address
 ):
+    # all fields are mandatory
     should_be_str("author", author)
     year_check(year)
     should_be_str("title", title)

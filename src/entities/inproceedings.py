@@ -64,6 +64,7 @@ class Inproceedings:
         }
 
         result = {}
+        # checking if value is none, it will not be added to the returned result dict
         for key, value in fields.items():
             if value is not None:
                 result[key] = value

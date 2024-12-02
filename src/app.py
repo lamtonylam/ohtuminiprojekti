@@ -2,7 +2,7 @@ from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.inproceedings_repository import get_inproceedings, create_reference
 from config import app, test_env, populate_env
-from util import validate_book, validate_article, validate_inproceedings
+from validate import validate_book, validate_article, validate_inproceedings
 from populate_test_data import populate_database
 from bibtex_parser import inproceeding_bibtex_parser
 
@@ -92,7 +92,7 @@ def reference_creation():
                 publisher
             )
 
-        # Inputs given as arguments to the validation function //found in util.py
+        # Inputs given as arguments to the validation function //found in validate.py
         create_reference(
             reference_id,
             reference_type,
