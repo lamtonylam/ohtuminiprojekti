@@ -51,7 +51,7 @@ def validate_article(
     should_be_str("reference_id", reference_id)
     should_be_str("author", author)
     should_be_str("title", title)
-    should_be_valid_positive_int("journal", journal)
+    should_be_str("journal", journal)
     year_check(year)
     
     # optional fields
