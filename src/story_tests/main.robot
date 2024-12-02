@@ -18,7 +18,8 @@ Reference Is Added To The Table After It Is Created
     Set Title  TestTitle
     Set Booktitle  TestBooktitle
     Set Year  2024
-    Click Button  create
+    Scroll Down  1000
+    Click Button  Create
     Starting Page Should Be Open
     Table Should Be Visible
     Table Should Contain Reference  TestId
@@ -73,4 +74,5 @@ Set Year
 
 Press Show More
     Click Button    name=show_more_button
+
 

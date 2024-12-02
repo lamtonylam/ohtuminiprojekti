@@ -6,9 +6,9 @@
 
 {% block body %}
 
-  <h2>References Management App</h2>
-  <div class="table-container">
-    <table>
+  <h2 class="text-center my-4 text-success">References Management App</h2>
+  <div class="table-container mb-4">
+    <table class="table table-striped table-boarded">
       <thead>
         <tr>
           <th>Type</th>
@@ -75,16 +75,16 @@
       });
     });
   </script>
-  <div>
-    <a href="/new_reference" class="button-link" id="button_to_reference">
+  <div class="container-fluid mb-4">
+    <a href="/new_reference" class="btn btn-success" id="button_to_reference">
       Create a new reference</a
     >
     <form action="/download" method="GET" style="display: block;">
       <br />
-      <button type="submit" name="download" class="button">Download</button>
+      <button type="submit" name="download"  class="btn btn-success">Download</button>
     </form>
     <br />
-    <a href="/preview" class="button-link" id="button_to_preview">Preview</a>
+    <a href="/preview" class="btn btn-success" id="button_to_preview">Preview</a>
   </div>
   {% with messages = get_flashed_messages() %}{% if messages %}
     <ul>

@@ -17,7 +17,8 @@ Download Bibtex File
     Set Title  TestTitle
     Set Booktitle  TestBooktitle
     Set Year  2024
-    Click Button  create
+    Scroll Down  1000
+    Click Button  Create
     Starting Page Should Be Open
     Page Should Contain    TestId
     Page Should Contain    TestAuthor

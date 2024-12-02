@@ -72,3 +72,7 @@ Set Year
 Set Editor
     [Arguments]  ${editor}
     Input Text  editor  ${editor}
+
+Scroll Down
+    [Arguments]  ${scroll_height}=1000
+    Execute Javascript  window.scrollBy(0, ${scroll_height})
