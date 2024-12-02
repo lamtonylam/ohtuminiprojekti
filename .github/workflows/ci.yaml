@@ -41,6 +41,7 @@ jobs:
         run: poetry install  --no-root
       - name: Apply database schema
         run: |
+          export PGPASSWORD=postgres
           psql -h localhost -U postgres -d postgres -f src/schema.sql
       - name: Run unit tests
         run: poetry run pytest src/tests/*
