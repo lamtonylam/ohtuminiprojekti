@@ -37,9 +37,9 @@ def setup_db():
     schema = open("./src/schema.sql", "r")
     sql = text(schema.read())
     schema.close()
-    
+
     print(f"Creating table {table_name}")
-    
+
     db.session.execute(sql)
     db.session.commit()
 

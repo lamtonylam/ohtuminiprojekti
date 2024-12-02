@@ -2,6 +2,7 @@ import unittest
 from validate import validate_inproceedings, UserInputError
 from config import app
 
+
 class TestValidator(unittest.TestCase):
     def setUp(self):
         self.app_context = app.app_context()
@@ -57,7 +58,8 @@ class TestValidator(unittest.TestCase):
         try:
             validate_inproceedings(**self.valid_data)
         except UserInputError:
-            self.fail("validate_inproceedings raised UserInputError unexpectedly!")
+            self.fail(
+                "validate_inproceedings raised UserInputError unexpectedly!")
 
     def tearDown(self):
         self.app_context.pop()
