@@ -6,17 +6,8 @@ test_data = [
         "title": "Advances in AI",
         "author": "Alice Johnson",
         "year": 2024,
-        "publisher": None,
-        "address": None,
-        "journal": None,
-        "volume": None,
-        "number": None,
-        "pages": None,
-        "month": None,
-        "note": None,
         "booktitle": "Proceedings of the AI Conference 2024",
-        "editor": "-",
-        "series": None,
+        "editor": "Alice Osam",
         "organization": "AI Society"
     },
     {
@@ -26,17 +17,8 @@ test_data = [
         "author": "Bob Smith",
         "year": 2023,
         "publisher": "ML Publishers",
-        "address": None,
-        "journal": None,
         "volume": 12,
-        "number": 3,
-        "pages": None,
-        "month": None,
-        "note": None,
-        "booktitle": None,
-        "editor": None,
-        "series": None,
-        "organization": None
+        "number": 3
     },
     {
         "reference_id": "ref03",
@@ -44,17 +26,6 @@ test_data = [
         "title": "Data Science Fundamentals",
         "author": "Clara White",
         "year": 2022,
-        "publisher": "Tech Books",
-        "address": None,
-        "journal": None,
-        "volume": None,
-        "number": None,
-        "pages": None,
-        "month": None,
-        "note": None,
-        "booktitle": None,
-        "editor": None,
-        "series": None,
-        "organization": None
+        "publisher": "Tech Books"
     }
 ]

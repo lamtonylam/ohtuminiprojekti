@@ -8,16 +8,22 @@ table_name = "reference"
 
 
 def populate_database():
-    sql = text(f"""
-            INSERT INTO {table_name} (
-                reference_id, reference_type, title, author, publisher,
-                address, journal, volume, number, pages, month, note, booktitle, editor, series, organisation)
-            VALUES (
-                :reference_id, :reference_type, :title, :author, :publisher,
-                :address, :journal, :volume, :number, :pages, :month, :note, :booktitle, :editor, :series, :organisation)
-            )
-            """)
-
-
     for reference in test_data: 
-        create_reference( reference_id=reference["reference_id"], reference_type=reference["reference_type"], title=reference["title"], author=reference["author"], year=reference["year"], booktitle=reference.get("booktitle"), editor=reference.get("editor"), volume=reference.get("volume"), number=reference.get("number"), series=reference.get("series"), pages=reference.get("pages"), address=reference.get("address"), journal=reference.get("journal"), month=reference.get("month"), note=reference.get("note"), organization=reference.get("organization"), publisher=reference.get("publisher"), )
+        create_reference(reference_id=reference["reference_id"], 
+        reference_type=reference["reference_type"], 
+        title=reference["title"], 
+        author=reference["author"], 
+        year=reference["year"], 
+        booktitle=reference.get("booktitle"), 
+        editor=reference.get("editor"), 
+        volume=reference.get("volume"), 
+        number=reference.get("number"), 
+        series=reference.get("series"), 
+        pages=reference.get("pages"), 
+        address=reference.get("address"), 
+        journal=reference.get("journal"), 
+        month=reference.get("month"), 
+        note=reference.get("note"), 
+        organization=reference.get("organization"), 
+        publisher=reference.get("publisher"),)
+

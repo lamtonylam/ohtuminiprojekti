@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+
   <h2>References Management App</h2>
   <div class="table-container">
     <table>
@@ -22,39 +23,32 @@
           <tr>
             <td>{{ reference.reference_type }}</td>
             <td>{{ reference.reference_id }}</td>
-            <td>{{ reference.author }}</td>
             <td>{{ reference.title }}</td>
+            <td>{{ reference.author }}</td>
             <td
               class="details"
-              id="details_{{ reference.reference_id }}"
+              id="details_{{ reference.id }}"
               style="display:none;"
             >
-              {% if reference.booktitle %}
-                Booktitle: {{ reference.booktitle }}<br />
-              {% endif %}
               {% if reference.year %}Year: {{ reference.year }}<br />{% endif %}
-              {% if reference.editor and reference.editor != '-' %}
-                Editor: {{ reference.editor }}<br />
-              {% endif %}
-              {% if reference.organization and reference.organization != '-' %}
-                Organization: {{ reference.organization }}<br />
-              {% endif %}
+              {% if reference.booktitle %}Booktitle: {{ reference.booktitle }}<br />{% endif %}
+              {% if reference.editor %}Editor: {{ reference.editor }}<br />{% endif %}
+              {% if reference.volume %}Volume: {{ reference.volume }}<br />{% endif %}
+              {% if reference.number %}Number: {{ reference.number }}<br />{% endif %}
+              {% if reference.series %}Series: {{ reference.series }}<br />{% endif %}
+              {% if reference.pages %}Pages: {{ reference.pages }}<br />{% endif %}
+              {% if reference.address %}Address: {{ reference.address }}<br />{% endif %}
               {% if reference.journal %}Journal: {{ reference.journal }}<br />{% endif %}
-              {% if reference.volume and reference.volume != '-' %}
-                Volume: {{ reference.volume }}<br />
-              {% endif %}
-              {% if reference.number and reference.number != '-' %}
-                Number: {{ reference.number }}<br />
-              {% endif %}
-              {% if reference.publisher and reference.publisher != '-' %}
-                Publisher: {{ reference.publisher }}<br />
-              {% endif %}
+              {% if reference.month %}Month: {{ reference.month }}<br />{% endif %}
+              {% if reference.note %}Note: {{ reference.note }}<br />{% endif %}
+              {% if reference.organization %}Organization: {{ reference.organization }}<br />{% endif %}
+              {% if reference.publisher %}Publisher: {{ reference.publisher }}<br />{% endif %}
             </td>
             <td>
               <button
                 type="button"
                 class="toggle-btn"
-                data-ref-id="{{ reference.reference_id }}"
+                data-ref-id="{{ reference.id }}"
               >
                 Show more
               </button>
