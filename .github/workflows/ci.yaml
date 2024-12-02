@@ -39,6 +39,8 @@ jobs:
         run: pip install poetry
       - name: Install dependencies
         run: poetry install  --no-root
+      - name: Set up database
+        run: poetry run src/db_helper.py
       - name: Run unit tests
         run: poetry run pytest src/tests/*
       - name: run pylint
