@@ -1,5 +1,5 @@
 import unittest
-from util import validate_inproceeding, UserInputError
+from validate import validate_inproceeding, UserInputError
 
 
 class TestValidator(unittest.TestCase):
