@@ -29,27 +29,25 @@
               id="details_{{ reference.reference_id }}"
               style="display:none;"
             >
-              {% if reference.type == 'inproceedings' %}
-                {% if reference.booktitle %}
-                  Booktitle: {{ reference.booktitle }}<br />
-                {% endif %}
-                {% if reference.year %}Year: {{ reference.year }}<br />{% endif %}
-                {% if reference.editor and reference.editor != '-' %}
-                  Editor: {{ reference.editor }}<br />
-                {% endif %}
-                {% if reference.organization and reference.organization != '-' %}
-                  Organization: {{ reference.organization }}<br />
-                {% endif %}
-                {% if reference.journal %}Journal: {{ reference.journal }}<br />{% endif %}
-                {% if reference.volume and reference.volume != '-' %}
-                  Volume: {{ reference.volume }}<br />
-                {% endif %}
-                {% if reference.number and reference.number != '-' %}
-                  Number: {{ reference.number }}<br />
-                {% endif %}
-                {% if reference.publisher and reference.publisher != '-' %}
-                  Publisher: {{ reference.publisher }}<br />
-                {% endif %}
+              {% if reference.booktitle %}
+                Booktitle: {{ reference.booktitle }}<br />
+              {% endif %}
+              {% if reference.year %}Year: {{ reference.year }}<br />{% endif %}
+              {% if reference.editor and reference.editor != '-' %}
+                Editor: {{ reference.editor }}<br />
+              {% endif %}
+              {% if reference.organization and reference.organization != '-' %}
+                Organization: {{ reference.organization }}<br />
+              {% endif %}
+              {% if reference.journal %}Journal: {{ reference.journal }}<br />{% endif %}
+              {% if reference.volume and reference.volume != '-' %}
+                Volume: {{ reference.volume }}<br />
+              {% endif %}
+              {% if reference.number and reference.number != '-' %}
+                Number: {{ reference.number }}<br />
+              {% endif %}
+              {% if reference.publisher and reference.publisher != '-' %}
+                Publisher: {{ reference.publisher }}<br />
               {% endif %}
             </td>
             <td>
