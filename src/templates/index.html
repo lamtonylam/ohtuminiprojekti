@@ -1,66 +1,83 @@
 {% extends "layout.html" %}
 
 {% block title %}
-  References Management App
+References Management App
 {% endblock %}
 
 {% block body %}
-  <h2>References Management App</h2>
-  <div class="table-container">
-    <table>
-      <thead>
+<h2>References Management App</h2>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Reference ID</th>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reference in references %}
         <tr>
-          <th>Reference ID</th>
-          <th>Author</th>
-          <th>Title</th>
-          <th>Booktitle</th>
-          <th>Year</th>
-          <th>Editor</th>
-          <th>Volume</th>
-          <th>Number</th>
-          <th>Series</th>
-          <th>Pages</th>
-          <th>Address</th>
-          <th>Month</th>
-          <th>Organization</th>
-          <th>Publisher</th>
+          <td>{{ reference.type }}</td>
+          <td>{{ reference.reference_id }}</td>
+          <td>{{ reference.author }}</td>
+          <td>{{ reference.title }}</td>
+          <td class="details" id="details_{{ reference.reference_id }}" style="display:none;">
+            {% if reference.type == 'inproceedings' %}
+              {% if reference.booktitle %} Booktitle: {{ reference.booktitle }}<br>{% endif %}
+              {% if reference.year %} Year: {{ reference.year }}<br>{% endif %}
+              {% if reference.editor and reference.editor != '-' %} Editor: {{ reference.editor }}<br>{% endif %}
+              {% if reference.organization and reference.organization != '-' %} Organization: {{ reference.organization }}<br>{% endif %}
+            {% elif reference.type == 'article' %}
+              {% if reference.journal %} Journal: {{ reference.journal }}<br>{% endif %}
+              {% if reference.year %} Year: {{ reference.year }}<br>{% endif %}
+              {% if reference.volume and reference.volume != '-' %} Volume: {{ reference.volume }}<br>{% endif %}
+              {% if reference.number and reference.number != '-' %} Number: {{ reference.number }}<br>{% endif %}
+              {% if reference.publisher and reference.publisher != '-' %} Publisher: {{ reference.publisher }}<br>{% endif %}
+            {% elif reference.type == 'book' %}
+              {% if reference.year %} Year: {{ reference.year }}<br>{% endif %}
+              {% if reference.publisher and reference.publisher != '-' %} Publisher: {{ reference.publisher }}<br>{% endif %}
+              {% if reference.isbn and reference.isbn != '-' %} ISBN: {{ reference.isbn }}<br>{% endif %}
+            {% endif %}
+          </td>
+          <td>
+            <button type="button" class="toggle-btn" data-ref-id="{{ reference.reference_id }}">Show more</button>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        {% for inproceeding in inproceedings %}
-          <tr>
-            <td>{{ inproceeding.reference_id }}</td>
-            <td>{{ inproceeding.author }}</td>
-            <td>{{ inproceeding.title }}</td>
-            <td>{{ inproceeding.booktitle }}</td>
-            <td>{{ inproceeding.year }}</td>
-            <td class="optionalfield">{{ inproceeding.editor or "-"}}</td>
-            <td class="optionalfield">{{ inproceeding.volume or "-"}}</td>
-            <td class="optionalfield">{{ inproceeding.number or "-"}}</td>
-            <td class="optionalfield">{{ inproceeding.series or "-"}}</td>
-            <td class="optionalfield">{{ inproceeding.pages or "-"}}</td>
-            <td class="optionalfield">{{ inproceeding.address or "-"}}</td>
-            <td class="optionalfield">{{ inproceeding.month or "-"}}</td>
-            <td class="optionalfield">{{ inproceeding.organization or "-"}}</td>
-            <td class="optionalfield">{{ inproceeding.publisher or "-"}}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  
-  <div>
-        <a href="/new_reference" class="button-link" id="button_to_reference"> Create a new inproceedings reference</a>
-        <form action="/download" method="GET" style="display: block;"><br>
-      <button type="submit" name="download" class="button">Download</button>
-        </form><br>
-        <a href="/preview" class="button-link" id="button_to_preview">Preview</a>
-  </div>
-  {% with messages = get_flashed_messages() %}{% if messages %}
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-  {% endif %}{% endwith %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Function to toggle the visibility of the details section for each reference
+  document.querySelectorAll('.toggle-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const refId = button.getAttribute('data-ref-id');
+      const detailsSection = document.getElementById(`details_${refId}`);
+      const isVisible = detailsSection.style.display === 'block';
+
+      // Toggle the visibility: show if hidden, hide if visible
+      detailsSection.style.display = isVisible ? 'none' : 'block';
+      // Change the button text based on visibility
+      button.textContent = isVisible ? 'Show more' : 'Hide';
+    });
+  });
+</script>
+<div>
+  <a href="/new_reference" class="button-link" id="button_to_reference"> Create a new reference</a>
+  <form action="/download" method="GET" style="display: block;"><br>
+    <button type="submit" name="download" class="button">Download</button>
+  </form><br>
+  <a href="/preview" class="button-link" id="button_to_preview">Preview</a>
+</div>
+{% with messages = get_flashed_messages() %}{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}{% endwith %}
 {% endblock %}
