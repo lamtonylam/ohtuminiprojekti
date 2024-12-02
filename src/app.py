@@ -1,56 +1,25 @@
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
-from repositories.inproceedings_repository import get_inproceedings, create_reference
+from repositories.references_repository import get_references, create_reference
 from config import app, test_env, populate_env
 from validate import validate_book, validate_article, validate_inproceedings
 from populate_test_data import populate_database
-from bibtex_parser import inproceeding_bibtex_parser
+from bibtex_parser import reference_bibtex_parser
 
 
 @app.route("/")
 def index():
-    inproceedings = get_inproceedings()
-    return render_template("index.html", references= [
-    {
-        "type": "inproceedings",
-        "reference_id": "ref01",
-        "author": "Alice Johnson",
-        "title": "Advances in AI",
-        "booktitle": "Proceedings of the AI Conference 2024",
-        "year": 2024,
-        "editor": "-",
-        "organization": "AI Society"
-    },
-    {
-        "type": "article",
-        "reference_id": "ref02",
-        "author": "Bob Smith",
-        "title": "Deep Learning Insights",
-        "journal": "Journal of Machine Learning",
-        "year": 2023,
-        "volume": 12,
-        "number": 3,
-        "publisher": "ML Publishers"
-    },
-    {
-        "type": "book",
-        "reference_id": "ref03",
-        "author": "Clara White",
-        "title": "Data Science Fundamentals",
-        "year": 2022,
-        "publisher": "Tech Books",
-        "isbn": "978-1234567890"
-    }
-]
-)
+    references = get_references()
+    return render_template("index.html", references=references)
 
 
 # get a preview of the bibtex
 @app.route("/preview")
 def bibtexpreview():
-    inproceedings = get_inproceedings()
+    references = get_references()
     return render_template(
-        "preview.html", inproceedings_list_bibtex=inproceeding_bibtex_parser(inproceedings)
+        "preview.html",
+        reference_list_bibtex=reference_bibtex_parser(references),
     )
 
 
@@ -65,24 +34,26 @@ def reference_creation():
     reference_id = request.form.get("reference_id")
     author = request.form.get("author")
     title = request.form.get("title")
-    booktitle = request.form.get("booktitle")
     year = request.form.get("year")
+    reference_type = request.form.get("reference_type")
+    print(reference_type)
 
     # optional fields
+    booktitle = request.form.get("booktitle") or None
     editor = request.form.get("editor") or None
     volume = request.form.get("volume") or None
     number = request.form.get("number") or None
     series = request.form.get("series") or None
 
-    reference_type = "book"
-    journal = "Life"
-    note = "Hello world"
-
+    # reference_type = "book"
+    journal = request.form.get("journal") or None
+    note = request.form.get("note") or None
     pages = request.form.get("pages") or None
     address = request.form.get("address") or None
     month = request.form.get("month") or None
     organization = request.form.get("organization") or None
     publisher = request.form.get("publisher") or None
+
     try:
         if reference_type == "article":
             validate_article(
@@ -95,18 +66,12 @@ def reference_creation():
                 number,
                 pages,
                 month,
-                note
+                note,
             )
 
         elif reference_type == "book":
-            validate_book(
-                author,
-                year,
-                title,
-                publisher,
-                address
-            )
-            
+            validate_book(author, year, title, publisher, address)
+
         elif reference_type == "inproceedings":
             validate_inproceedings(
                 author,
@@ -121,7 +86,7 @@ def reference_creation():
                 address,
                 month,
                 organization,
-                publisher
+                publisher,
             )
 
         # Inputs given as arguments to the validation function //found in validate.py
@@ -130,8 +95,8 @@ def reference_creation():
             reference_type,
             author,
             title,
-            booktitle,
             year,
+            booktitle,
             editor,
             volume,
             number,
@@ -142,7 +107,7 @@ def reference_creation():
             organization,
             publisher,
             journal,
-            note
+            note,
         )
         flash("Added succesfully")
         return redirect("/")
@@ -154,8 +119,8 @@ def reference_creation():
 # When user clicks download button, get references as string and download as .bib file
 @app.route("/download")
 def getBibtexFile():
-    inproceedings = get_inproceedings()
-    bibtex_str = inproceeding_bibtex_parser(inproceedings)
+    references = get_references()
+    bibtex_str = reference_bibtex_parser(references)
 
     if not bibtex_str:
         flash("There are no references to download.")
@@ -163,7 +128,7 @@ def getBibtexFile():
     return Response(
         bibtex_str,
         mimetype="text/plain",
-        headers={'Content-disposition': 'attachment; filename=references.bib'}
+        headers={"Content-disposition": "attachment; filename=references.bib"},
     )
 
 

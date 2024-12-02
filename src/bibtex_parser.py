@@ -1,12 +1,12 @@
-def inproceeding_bibtex_parser(inproceedings):
+def reference_bibtex_parser(references):
     bibtex = ""
-    for i in inproceedings:
-        inproceedings_dict = i.to_dict()
+    for i in references:
+        references_dict = i.to_dict()
 
-        bibtex = bibtex + f"@{inproceedings_dict["reference_type"]}{{{i.reference_id},\n"
+        bibtex = bibtex + f"@{references_dict['reference_type']}{{{i.reference_id},\n"
 
         # loops through the single inproceeding entry and adds their data to bibtex string
-        for ref_type, value in inproceedings_dict.items():
+        for ref_type, value in references_dict.items():
             typestring = f"{ref_type} =  {{{value}}},\n"
             bibtex = bibtex + "    " + typestring
 

@@ -34,7 +34,7 @@ def setup_db():
         db.session.execute(sql)
         db.session.commit()
 
-    schema = open("./schema.sql", "r")
+    schema = open("./src/schema.sql", "r")
     sql = text(schema.read())
     schema.close()
     

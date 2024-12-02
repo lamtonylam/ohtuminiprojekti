@@ -1,9 +1,9 @@
 from config import db
 from test_data import test_data
 from sqlalchemy import text
+from validate import validate_article, validate_book, validate_inproceedings
 
-
-table_name = "inproceedings"
+table_name = "reference"
 
 
 def populate_database():
@@ -16,7 +16,7 @@ def populate_database():
                 :reference_id, :author, :title, :booktitle, :year, :editor, :volume, :number, 
                 :series, :pages, :address, :month, :organization, :publisher
             )
-        """)
+            """)
 
     for row in test_data:
         db.session.execute(sql, row)

@@ -1,4 +1,4 @@
-class Inproceedings:
+class References:
     def __init__(
         self,
         id,

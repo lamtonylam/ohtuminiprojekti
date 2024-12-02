@@ -19,11 +19,12 @@
     <!-- Type-Specific Fields -->
     <!-- Inproceeding -->
     <div id="inproceeding_fields">
-      <form action="/create_inproceeding" method="post">
+      <form action="/create_reference" method="post">
 
         <fieldset>
           <legend>Required Fields</legend>
           <label for="reference_id">Reference ID:</label>
+          <input type="hidden" class="reference_type" name="reference_type" value="inproceeding">
           <input type="text" name="reference_id" required /><br />
           <label for="author">Author:</label>
           <input type="text" name="author" required /><br />
@@ -61,10 +62,11 @@
   
     <!-- Article -->
     <div id="article_fields" style="display: none;">
-      <form action="/create_article" method="post">
+      <form action="/create_reference" method="post">
         <fieldset>
           <legend>Required Fields</legend>
           <label for="reference_id">Reference ID:</label>
+          <input type="hidden" class="reference_type" name="reference_type" value="article">
           <input type="text" name="reference_id" required /><br />
           <label for="author">Author:</label>
           <input type="text" name="author" required /><br />    
@@ -94,11 +96,12 @@
   
     <!-- Book -->
     <div id="book_fields" style="display: none;">
-      <form action="/create_book" method="post">
+      <form action="/create_reference" method="post">
 
         <fieldset>
           <legend>Required Fields</legend>
           <label for="reference_id">Reference ID:</label>
+          <input type="hidden" class="reference_type" name="reference_type" value="book">
           <input type="text" name="reference_id" required /><br />
           <label for="author">Author:</label>
           <input type="text" name="author" required /><br />
