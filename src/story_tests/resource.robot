@@ -43,7 +43,7 @@ Starting Page Should Be Open
     Title Should Be  References Management App
 
 Form Page Should Be Open
-    Page Should Contain  Create a new improceedings reference
+    Page Should Contain  Create a new reference
 
 Preview Page Should Be Open
     Page Should Contain  Preview
