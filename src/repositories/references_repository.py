@@ -62,7 +62,7 @@ def create_reference(
     organization=None,
     publisher=None,
 ):
-    print(f"Creating new reference with following details:")
+    print("Creating new reference with following details:")
     print(f"Reference ID: {reference_id}")
     print(f"Type: {reference_type}")
     print(f"Title: {title}")
@@ -82,10 +82,12 @@ def create_reference(
     print(f"Publisher: {publisher}")
 
     sql = text(
-        """INSERT INTO reference (reference_id, reference_type, title, author, year, publisher, address, journal, volume, 
-                number, pages, month, note, booktitle, editor, series, organization) 
-                VALUES (:reference_id, :reference_type, :title, :author, :year, :publisher, :address, :journal, :volume, 
-                :number, :pages, :month, :note, :booktitle, :editor, :series, :organization)"""
+        """INSERT INTO reference (reference_id, reference_type, title,
+        author, year, publisher, address, journal, volume, number, pages,
+        month, note, booktitle, editor, series, organization) 
+        VALUES (:reference_id, :reference_type, :title, :author, :year,
+        :publisher, :address, :journal, :volume, :number, :pages, :month,
+        :note, :booktitle, :editor, :series, :organization)"""
     )
     db.session.execute(
         sql,

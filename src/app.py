@@ -95,8 +95,8 @@ def reference_creation():
         create_reference(
             reference_id,
             reference_type,
-            author,
             title,
+            author,
             year,
             booktitle,
             editor,
@@ -105,11 +105,11 @@ def reference_creation():
             series,
             pages,
             address,
+            journal,
             month,
+            note,
             organization,
             publisher,
-            journal,
-            note
         )
         flash("Added succesfully")
         return redirect("/")

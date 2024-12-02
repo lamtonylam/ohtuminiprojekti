@@ -1,7 +1,4 @@
-from config import db
 from test_data import test_data
-from sqlalchemy import text
-from validate import validate_article, validate_book, validate_inproceedings
 from repositories.references_repository import create_reference
 
 table_name = "reference"
