@@ -70,10 +70,11 @@ def reference_creation():
             )
 
         elif reference_type == "book":
-            validate_book(author, year, title, publisher, address)
+            validate_book(reference_id, author, year, title, publisher, address)
 
         elif reference_type == "inproceedings":
             validate_inproceedings(
+                reference_id,
                 author,
                 title,
                 booktitle,

@@ -1,4 +1,5 @@
 import datetime
+from repositories.references_repository import get_reference_id
 
 class UserInputError(Exception):
     pass
@@ -15,6 +16,12 @@ def year_check(year):
     if int(year) > datetime.date.today().year:
         raise UserInputError(
             "year must be a valid integer between 1 and current year.")
+def reference_id_should_be_unique(value):
+    references = get_reference_id()
+    if value in references:
+        raise UserInputError(
+            "reference ID already exists in the database."
+        )
     
 def month_check(month):
     months = [
@@ -48,6 +55,7 @@ def validate_article(
     month,
     note):
     # mandatory fields
+    reference_id_should_be_unique(reference_id)
     should_be_str("reference_id", reference_id)
     should_be_str("author", author)
     should_be_str("title", title)
@@ -68,6 +76,7 @@ def validate_article(
     
 
 def validate_book(
+    reference_id,
     author,
     year,
     title,
@@ -75,6 +84,8 @@ def validate_book(
     address
 ):
     # all fields are mandatory
+    reference_id_should_be_unique(reference_id)
+    should_be_str("reference_id", reference_id)
     should_be_str("author", author)
     year_check(year)
     should_be_str("title", title)
@@ -82,6 +93,7 @@ def validate_book(
     should_be_str("address", address)
 
 def validate_inproceedings(
+    reference_id,
     author,
     title,
     booktitle,
@@ -96,6 +108,8 @@ def validate_inproceedings(
     organization,
     publisher
 ):
+    reference_id_should_be_unique(reference_id)
+    should_be_str("reference_id", reference_id)
     should_be_str("author", author)
     should_be_str("title", title)
     should_be_str("booktitle", booktitle)
