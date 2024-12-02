@@ -1,5 +1,5 @@
 import unittest
-from validate import validate_inproceeding, UserInputError
+from validate import validate_inproceedings, UserInputError
 
 
 class TestValidator(unittest.TestCase):
@@ -25,34 +25,34 @@ class TestValidator(unittest.TestCase):
         data = self.valid_data.copy()
         data["reference_id"] = 123
         with self.assertRaises(UserInputError):
-            validate_inproceeding(**data)
+            validate_inproceedings(**data)
 
     def test_input_negative_int(self):
         data = self.valid_data.copy()
         data["volume"] = "-5"
         with self.assertRaises(UserInputError):
-            validate_inproceeding(**data)
+            validate_inproceedings(**data)
 
     def test_input_negative_year(self):
         data = self.valid_data.copy()
         data["year"] = "3020"
         with self.assertRaises(UserInputError):
-            validate_inproceeding(**data)
+            validate_inproceedings(**data)
 
     def test_invalid_month(self):
         data = self.valid_data.copy()
         data["month"] = "Octember"
         with self.assertRaises(UserInputError):
-            validate_inproceeding(**data)
+            validate_inproceedings(**data)
 
     def test_required_field_missing(self):
         data = self.valid_data.copy()
         del data["title"]
         with self.assertRaises(TypeError):
-            validate_inproceeding(**data)
+            validate_inproceedings(**data)
 
     def test_valid_input(self):
         try:
-            validate_inproceeding(**self.valid_data)
+            validate_inproceedings(**self.valid_data)
         except UserInputError:
-            self.fail("validate_inproceeding raised UserInputError unexpectedly!")
+            self.fail("validate_inproceedings raised UserInputError unexpectedly!")

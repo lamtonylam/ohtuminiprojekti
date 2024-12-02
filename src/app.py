@@ -66,7 +66,7 @@ def reference_creation():
                 number,
                 pages,
                 month,
-                note,
+                note
             )
 
         elif reference_type == "book":
@@ -87,7 +87,7 @@ def reference_creation():
                 address,
                 month,
                 organization,
-                publisher,
+                publisher
             )
 
         # Inputs given as arguments to the validation function //found in validate.py
@@ -108,7 +108,7 @@ def reference_creation():
             organization,
             publisher,
             journal,
-            note,
+            note
         )
         flash("Added succesfully")
         return redirect("/")

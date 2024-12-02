@@ -61,6 +61,7 @@ def validate_article(
     should_be_str("title", title)
     should_be_str("journal", journal)
     year_check(year)
+    should_be_valid_positive_int("volume", volume)
     
     # optional fields
     for field_name, value in [
@@ -113,6 +114,7 @@ def validate_inproceedings(
     should_be_str("author", author)
     should_be_str("title", title)
     should_be_str("booktitle", booktitle)
+    should_be_valid_positive_int("volume", volume)
     year_check(year)
     
     for field_name, value in [
