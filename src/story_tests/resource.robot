@@ -26,6 +26,7 @@ Open And Configure Browser
         Set Selenium Speed  ${DELAY}
     END
     Open Browser  browser=${BROWSER}  options=${options}
+    Set Window Size  1920  1080
 
 Reset References
     Go To  ${RESET_URL}
@@ -43,7 +44,7 @@ Starting Page Should Be Open
     Title Should Be  References Management App
 
 Form Page Should Be Open
-    Page Should Contain  Create a new improceedings reference
+    Page Should Contain  Create a new reference
 
 Preview Page Should Be Open
     Page Should Contain  Preview
@@ -72,3 +73,7 @@ Set Year
 Set Editor
     [Arguments]  ${editor}
     Input Text  editor  ${editor}
+
+Scroll Down
+    [Arguments]  ${scroll_height}=1000
+    Execute Javascript  window.scrollBy(0, ${scroll_height})

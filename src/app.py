@@ -1,24 +1,25 @@
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
-from repositories.inproceedings_repository import get_inproceedings, create_inproceeding
+from repositories.references_repository import get_references, create_reference
 from config import app, test_env, populate_env
-from util import validate_inproceeding
+from validate import validate_book, validate_article, validate_inproceedings
 from populate_test_data import populate_database
-from bibtex_parser import inproceeding_bibtex_parser
+from bibtex_parser import reference_bibtex_parser
 
 
 @app.route("/")
 def index():
-    inproceedings = get_inproceedings()
-    return render_template("index.html", inproceedings=inproceedings)
+    references = get_references()
+    return render_template("index.html", references=references)
 
 
 # get a preview of the bibtex
 @app.route("/preview")
 def bibtexpreview():
-    inproceedings = get_inproceedings()
+    references = get_references()
     return render_template(
-        "preview.html", inproceedings_list_bibtex=inproceeding_bibtex_parser(inproceedings)
+        "preview.html",
+        reference_list_bibtex=reference_bibtex_parser(references),
     )
 
 
@@ -33,14 +34,20 @@ def reference_creation():
     reference_id = request.form.get("reference_id")
     author = request.form.get("author")
     title = request.form.get("title")
-    booktitle = request.form.get("booktitle")
     year = request.form.get("year")
+    reference_type = request.form.get("reference_type")
+    print(reference_type)
 
     # optional fields
+    booktitle = request.form.get("booktitle") or None
     editor = request.form.get("editor") or None
     volume = request.form.get("volume") or None
     number = request.form.get("number") or None
     series = request.form.get("series") or None
+
+    # reference_type = "book"
+    journal = request.form.get("journal") or None
+    note = request.form.get("note") or None
     pages = request.form.get("pages") or None
     address = request.form.get("address") or None
     month = request.form.get("month") or None
@@ -48,36 +55,59 @@ def reference_creation():
     publisher = request.form.get("publisher") or None
 
     try:
-        # Inputs given as arguments to the validation function //found in util.py
-        validate_inproceeding(
+        if reference_type == "article":
+            validate_article(
+                reference_id,
+                author,
+                title,
+                journal,
+                year,
+                volume,
+                number,
+                pages,
+                month,
+                note
+            )
+
+        elif reference_type == "book":
+            validate_book(reference_id, author, year,
+                          title, publisher, address)
+
+        elif reference_type == "inproceedings":
+            validate_inproceedings(
+                reference_id,
+                author,
+                title,
+                booktitle,
+                year,
+                editor,
+                volume,
+                number,
+                series,
+                pages,
+                address,
+                month,
+                organization,
+                publisher
+            )
+
+        # Inputs given as arguments to the validation function //found in validate.py
+        create_reference(
             reference_id,
-            author,
+            reference_type,
             title,
-            booktitle,
+            author,
             year,
+            booktitle,
             editor,
             volume,
             number,
             series,
             pages,
             address,
+            journal,
             month,
-            organization,
-            publisher,
-        )
-        create_inproceeding(
-            reference_id,
-            author,
-            title,
-            booktitle,
-            year,
-            editor,
-            volume,
-            number,
-            series,
-            pages,
-            address,
-            month,
+            note,
             organization,
             publisher,
         )
@@ -91,8 +121,8 @@ def reference_creation():
 # When user clicks download button, get references as string and download as .bib file
 @app.route("/download")
 def getBibtexFile():
-    inproceedings = get_inproceedings()
-    bibtex_str = inproceeding_bibtex_parser(inproceedings)
+    references = get_references()
+    bibtex_str = reference_bibtex_parser(references)
 
     if not bibtex_str:
         flash("There are no references to download.")
@@ -100,7 +130,7 @@ def getBibtexFile():
     return Response(
         bibtex_str,
         mimetype="text/plain",
-        headers={'Content-disposition': 'attachment; filename=references.bib'}
+        headers={"Content-disposition": "attachment; filename=references.bib"},
     )
 
 

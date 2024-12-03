@@ -18,14 +18,15 @@ Reference Is Added To The Table After It Is Created
     Set Title  TestTitle
     Set Booktitle  TestBooktitle
     Set Year  2024
-    Click Button  create
+    Scroll Down  1000
+    Click Button  Create
     Starting Page Should Be Open
     Table Should Be Visible
     Table Should Contain Reference  TestId
     Table Should Contain Author  TestAuthor
     Table Should Contain Title  TestTitle
-    Table Should Contain Year  2024
-
+    Press Show More
+    Table Should Contain Year  Year: 2024
 
 *** Keywords *** 
 Table Should Be Visible
@@ -71,5 +72,7 @@ Set Year
     [Arguments]  ${year}
     Input Text  year  ${year}
 
+Press Show More
+    Click Button    name=show_more_button
 
 

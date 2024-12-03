@@ -14,6 +14,7 @@ Add a New Reference Successfully
     Set Title  TestTitle
     Set Booktitle  TestBooktitle
     Set Year  2024
+    Scroll Down  1000
     Submit Form
     Starting Page Should Be Open
     Page Should Contain    TestId
@@ -27,10 +28,11 @@ Adding a new reference without required fields fails
     Set Title  TestTitle
     Set Booktitle  TestBooktitle
     Set Editor  TestEditor
+    Scroll Down  1000
     Submit Form
     Go To Starting Page
 
 *** Keywords ***
 
 Submit Form
-    Click Button  create
+    Click Button  Create
