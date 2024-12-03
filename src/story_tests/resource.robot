@@ -26,6 +26,7 @@ Open And Configure Browser
         Set Selenium Speed  ${DELAY}
     END
     Open Browser  browser=${BROWSER}  options=${options}
+    Set Window Size  1920  1080
 
 Reset References
     Go To  ${RESET_URL}
