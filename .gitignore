@@ -13,3 +13,4 @@ package.json
 bibtex.txt
 .coverage
 notes.txt
+.pytest_cache
