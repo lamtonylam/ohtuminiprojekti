@@ -41,10 +41,14 @@ jobs:
         run: poetry install  --no-root
       - name: Set up database
         run: poetry run python3 src/db_helper.py
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Run tests
+        run: poetry run coverage run --branch -m pytest
+      - name: Coverage report
+        run: poetry run coverage xml
+      - name: Coverage report to Codecov
+        uses: codecov/codecov-action@v4
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - name: Run unit tests
         run: poetry run pytest src/tests/*
       - name: run pylint
