@@ -1,5 +1,6 @@
 # ohtuminiprojekti
-[![codecov](https://codecov.io/gh/lamtonylam/ohtuminiprojekti/graph/badge.svg?token=N62JBV2CMT)](https://codecov.io/gh/lamtonylam/ohtuminiprojekti)
+[![codecov](https://codecov.io/gh/lamtonylam/ohtuminiprojekti/graph/badge.svg?token=N62JBV2CMT)](https://codecov.io/gh/lamtonylam/ohtuminiprojekti)  
+![CI](https://github.com/lamtonylam/ohtuminiprojekti/actions/workflows/ci.yaml/badge.svg?branch=main)
 ### [Product backlog](https://github.com/users/lamtonylam/projects/4)
 
 ### [Sprint backlog](https://helsinkifi-my.sharepoint.com/:x:/g/personal/bbsebast_ad_helsinki_fi/Ee2nabIYHuRJuohTCCOQPcYBBL0G3sMeIiiRyvB-SzPxGQ?e=jA78dm)
