@@ -1,10 +1,10 @@
 def reference_bibtex_parser(references):
     bibtex = ""
-    for i in references:
-        references_dict = i.to_dict()
+    for reference in references:
+        references_dict = reference.to_dict()
 
         bibtex = bibtex + \
-            f"@{references_dict['reference_type']}{{{i.reference_id},\n"
+            f"@{references_dict['reference_type']}{{{reference.reference_id},\n"
 
         # loops through the single inproceeding entry and adds their data to bibtex string
         for ref_type, value in references_dict.items():
