@@ -62,24 +62,6 @@ def create_reference(
     organization=None,
     publisher=None,
 ):
-    print("Creating new reference with following details:")
-    print(f"Reference ID: {reference_id}")
-    print(f"Type: {reference_type}")
-    print(f"Title: {title}")
-    print(f"Author: {author}")
-    print(f"Year: {year}")
-    print(f"Booktitle: {booktitle}")
-    print(f"Editor: {editor}")
-    print(f"Volume: {volume}")
-    print(f"Number: {number}")
-    print(f"Series: {series}")
-    print(f"Pages: {pages}")
-    print(f"Address: {address}")
-    print(f"Journal: {journal}")
-    print(f"Month: {month}")
-    print(f"Note: {note}")
-    print(f"Organization: {organization}")
-    print(f"Publisher: {publisher}")
 
     sql = text(
         """INSERT INTO reference (reference_id, reference_type, title,
