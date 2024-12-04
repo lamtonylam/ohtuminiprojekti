@@ -25,26 +25,26 @@
             <td>{{ reference.reference_id }}</td>
             <td>{{ reference.author }}</td>
             <td>{{ reference.title }}</td>
-            <td
+            <td>
+              <div
               class="details"
               id="details_{{ reference.id }}"
               style="display:none;"
-            >
-              {% if reference.year %}Year: {{ reference.year }}<br />{% endif %}
-              {% if reference.booktitle %}Booktitle: {{ reference.booktitle }}<br />{% endif %}
-              {% if reference.editor %}Editor: {{ reference.editor }}<br />{% endif %}
-              {% if reference.volume %}Volume: {{ reference.volume }}<br />{% endif %}
-              {% if reference.number %}Number: {{ reference.number }}<br />{% endif %}
-              {% if reference.series %}Series: {{ reference.series }}<br />{% endif %}
-              {% if reference.pages %}Pages: {{ reference.pages }}<br />{% endif %}
-              {% if reference.address %}Address: {{ reference.address }}<br />{% endif %}
-              {% if reference.journal %}Journal: {{ reference.journal }}<br />{% endif %}
-              {% if reference.month %}Month: {{ reference.month }}<br />{% endif %}
-              {% if reference.note %}Note: {{ reference.note }}<br />{% endif %}
-              {% if reference.organization %}Organization: {{ reference.organization }}<br />{% endif %}
-              {% if reference.publisher %}Publisher: {{ reference.publisher }}<br />{% endif %}
-            </td>
-            <td>
+              >
+                {% if reference.year %}Year: {{ reference.year }}<br />{% endif %}
+                {% if reference.booktitle %}Booktitle: {{ reference.booktitle }}<br />{% endif %}
+                {% if reference.editor %}Editor: {{ reference.editor }}<br />{% endif %}
+                {% if reference.volume %}Volume: {{ reference.volume }}<br />{% endif %}
+                {% if reference.number %}Number: {{ reference.number }}<br />{% endif %}
+                {% if reference.series %}Series: {{ reference.series }}<br />{% endif %}
+                {% if reference.pages %}Pages: {{ reference.pages }}<br />{% endif %}
+                {% if reference.address %}Address: {{ reference.address }}<br />{% endif %}
+                {% if reference.journal %}Journal: {{ reference.journal }}<br />{% endif %}
+                {% if reference.month %}Month: {{ reference.month }}<br />{% endif %}
+                {% if reference.note %}Note: {{ reference.note }}<br />{% endif %}
+                {% if reference.organization %}Organization: {{ reference.organization }}<br />{% endif %}
+                {% if reference.publisher %}Publisher: {{ reference.publisher }}<br />{% endif %}
+              </div>
               <button
                 type="button"
                 class="toggle-btn"
