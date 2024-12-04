@@ -37,47 +37,52 @@
                 name="reference_type"
                 value="inproceedings"
               />
-              <label for="reference_id">Reference ID:</label>
+              <label for="inproceeding_reference_id">Reference ID:</label>
               <input
                 class="form-control form-control-sm"
                 type="text"
                 name="reference_id"
+                id="inproceeding_reference_id"
                 required
               />
             </div>
             <div class="col-md-6 mb-3">
-              <label for="author">Author:</label>
+              <label for="inproceeding_author">Author:</label>
               <input
                 class="form-control form-control-sm"
                 type="text"
                 name="author"
+                id="inproceeding_author"
                 required
               />
             </div>
             <div class="col-md-6 mb-3">
-              <label for="title">Title:</label>
+              <label for="inproceeding_title">Title:</label>
               <input
                 class="form-control form-control-sm"
                 type="text"
                 name="title"
+                id="inproceeding_title"
                 required
               />
             </div>
             <div class="col-md-6 mb-3">
-              <label for="booktitle">Booktitle:</label>
+              <label for="inproceeding_booktitle">Booktitle:</label>
               <input
                 class="form-control form-control-sm"
                 type="text"
                 name="booktitle"
+                id="inproceeding_booktitle"
                 required
               />
             </div>
             <div class="col-md-6 mb-3">
-              <label for="year">Year:</label>
+              <label for="inproceeding_year">Year:</label>
               <input
                 class="form-control form-control-sm"
                 type="number"
                 name="year"
+                id="inproceeding_year"
                 required
               />
             </div>
@@ -124,7 +129,7 @@
             </div>
           </div>
         </fieldset>
-        <button type="submit" name="create" class="btn btn-success mb-4">Create</button>
+        <button type="submit" name="create" id="create_inproceeding" class="btn btn-success mb-4">Create</button>
       </form>
     </div>
   </div>
@@ -138,30 +143,30 @@
             <legend>Required Fields</legend>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="reference_id">Reference ID:</label>
+                <label for="article_reference_id">Reference ID:</label>
                 <input
                   type="hidden"
                   class="reference_type"
                   name="reference_type"
                   value="article"
                 />
-                <input class="form-control form-control-sm" type="text" name="reference_id" required /><br />
+                <input class="form-control form-control-sm" type="text" name="reference_id" id="article_reference_id" required /><br />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="author">Author:</label>
-                <input class="form-control form-control-sm" type="text" name="author" required /><br />
+                <label for="article_author">Author:</label>
+                <input class="form-control form-control-sm" type="text" name="author" id="article_author" required /><br />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="title">Title:</label>
-                <input class="form-control form-control-sm" type="text" name="title" required /><br />
+                <label for="article_title">Title:</label>
+                <input class="form-control form-control-sm" type="text" name="title" id="article_title" required /><br />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="journal">Journal:</label>
-                <input class="form-control form-control-sm" type="text" name="journal" required /><br />
+                <label for="article_journal">Journal:</label>
+                <input class="form-control form-control-sm" type="text" name="journal" id="article_journal" required /><br />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="year">Year:</label>
-                <input class="form-control form-control-sm" type="number" name="year" required /><br />
+                <label for="article_year">Year:</label>
+                <input class="form-control form-control-sm" type="number" name="year" id="article_year" required /><br />
               </div>
             </div>
           </fieldset>
@@ -190,7 +195,7 @@
               </div>
             </div>
           </fieldset>
-          <button type="submit" name="create" class="btn btn-success mb-4">Create</button>
+          <button type="submit" name="create" id="create_article" class="btn btn-success mb-4">Create</button>
         </form>
       </div>
     </div>
@@ -202,38 +207,38 @@
             <legend>Required Fields</legend>
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="reference_id">Reference ID:</label>
+                <label for="book_reference_id">Reference ID:</label>
                 <input
                   type="hidden"
                   class="reference_type"
                   name="reference_type"
                   value="book"
                 />
-                <input class="form-control form-control-sm" type="text" name="reference_id" required /><br />
+                <input class="form-control form-control-sm" type="text" name="reference_id" id="book_reference_id" required /><br />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="author">Author:</label>
-                <input class="form-control form-control-sm" type="text" name="author" required /><br />
+                <label for="book_author">Author:</label>
+                <input class="form-control form-control-sm" type="text" name="author" id="book_author" required /><br />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="year">Year:</label>
-                <input class="form-control form-control-sm" type="number" name="year" required /><br />
+                <label for="book_year">Year:</label>
+                <input class="form-control form-control-sm" type="number" name="year" id="book_year" required /><br />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="title">Title:</label>
-                <input class="form-control form-control-sm" type="text" name="title" required /><br />
+                <label for="book_title">Title:</label>
+                <input class="form-control form-control-sm" type="text" name="title" id="book_title" required /><br />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="publisher">Publisher:</label>
-                <input class="form-control form-control-sm" type="text" name="publisher" required /><br />
+                <label for="book_publisher">Publisher:</label>
+                <input class="form-control form-control-sm" type="text" name="publisher" id="book_publisher" required /><br />
               </div>
               <div class="col-md-6 mb-3">
-                <label for="address">Address:</label>
-                <input class="form-control form-control-sm" type="text" name="address" required /><br />
+                <label for="book_address">Address:</label>
+                <input class="form-control form-control-sm" type="text" name="address" id="book_address" required /><br />
               </div>
             </div>
           </fieldset>
-          <button type="submit" name="create" class="btn btn-success mb-4">Create</button>
+          <button type="submit" name="create" id="create_book" class="btn btn-success mb-4">Create</button>
         </form>
       </div>
     </div>
