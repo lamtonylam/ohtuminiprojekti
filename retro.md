@@ -1,4 +1,4 @@
-Sprint 1 retrospective
+Sprint 2 retrospective
 
 Method used: Start, stop, Continue, More of, Less of
 
@@ -22,3 +22,27 @@ In sprint 3 we will focus on improving the following things:
     - commit spaghetti
     - viime hetken krunch
     - working when hungry
+
+
+Sprint 3 retrospective
+
+Method used: Start, stop, Continue, More of, Less of
+
+Start:
+    - clearer acceptance criteria and define criteria earlier
+    - start doing unit tests early
+Stop:
+    - mob programming
+Continue:
+    - good communication
+More of:
+    - pair programming
+    - keep sprint backlog up to date
+Less of:
+   - crunch
+
+
+In sprint 4 we will focus on improving the following things:
+    - less crunch
+    - more pair programming
+    - time management
