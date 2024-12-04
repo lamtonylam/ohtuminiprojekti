@@ -3,7 +3,6 @@ from validate import (
     validate_inproceedings,
     UserInputError,
     validate_article,
-    validate_book,
 )
 from config import app
 
@@ -82,7 +81,7 @@ class TestValidator(unittest.TestCase):
         except UserInputError:
             self.fail(
                 "validate_inproceedings raised UserInputError unexpectedly!")
-    
+
     def test_article_input_not_string(self):
         self.valid_article["author"] = 222
         with self.assertRaises(UserInputError):
@@ -97,7 +96,7 @@ class TestValidator(unittest.TestCase):
         self.valid_article["year"] = -11
         with self.assertRaises(UserInputError):
             validate_article(*self.valid_article)
-    
+
     def test_article_invalid_month(self):
         self.valid_article["month"] = "joulukuu"
         with self.assertRaises(UserInputError):
