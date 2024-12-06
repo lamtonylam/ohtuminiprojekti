@@ -1,7 +1,11 @@
 def reference_bibtex_parser(references):
     bibtex = ""
     for i in references:
-        references_dict = i.to_dict()
+        references_dict = {
+            k: v
+            for k, v in i.to_dict().items()
+            if v is not None and k not in {"id", "reference_id", "created_at"}
+        }
 
         bibtex = bibtex + \
             f"@{references_dict['reference_type']}{{{i.reference_id},\n"

@@ -1,25 +1,25 @@
 class References:
     def __init__(
         self,
-        id,
-        reference_id,
-        reference_type,
-        created_at,
-        author,
-        title,
-        booktitle,
-        year,
-        editor,
-        volume,
-        number,
-        series,
-        pages,
-        address,
-        month,
-        organization,
-        publisher,
-        journal,
-        note
+        id=None,
+        reference_id=None,
+        reference_type=None,
+        created_at=None,
+        author=None,
+        title=None,
+        year=None,
+        booktitle=None,
+        editor=None,
+        volume=None,
+        number=None,
+        series=None,
+        pages=None,
+        address=None,
+        month=None,
+        organization=None,
+        publisher=None,
+        journal=None,
+        note=None
     ):
         self.id = id
         self.reference_id = reference_id
@@ -42,34 +42,11 @@ class References:
         self.note = note
 
     # returns a dictionary of the class types
-    # left out self.id, self.created_at as they are not relevant in bibtex generation
     def to_dict(self):
-        fields = {
-            "reference_type": self.reference_type,
-            "author": self.author,
-            "year": self.year,
-            "title": self.title,
-            "booktitle": self.booktitle,
-            "editor": self.editor,
-            "volume": self.volume,
-            "number": self.number,
-            "series": self.series,
-            "pages": self.pages,
-            "address": self.address,
-            "month": self.month,
-            "organization": self.organization,
-            "publisher": self.publisher,
-            "journal": self.journal,
-            "note": self.note
-        }
+        fields = vars(self)
 
-        result = {}
-        # checking if value is none, it will not be added to the returned result dict
-        for key, value in fields.items():
-            if value is not None:
-                result[key] = value
-
-        return result
+        # Include all attributes
+        return dict(fields.items())
 
     def __str__(self):
         return f"Title: {self.title}, author: {self.author}"

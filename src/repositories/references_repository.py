@@ -43,26 +43,7 @@ def get_references():
     ]
 
 
-def create_reference(
-    reference_id,
-    reference_type,
-    title,
-    author,
-    year,
-    booktitle=None,
-    editor=None,
-    volume=None,
-    number=None,
-    series=None,
-    pages=None,
-    address=None,
-    journal=None,
-    month=None,
-    note=None,
-    organization=None,
-    publisher=None,
-):
-
+def create_reference(reference: References):
     sql = text(
         """INSERT INTO reference (reference_id, reference_type, title,
         author, year, publisher, address, journal, volume, number, pages,
@@ -73,25 +54,7 @@ def create_reference(
     )
     db.session.execute(
         sql,
-        {
-            "reference_id": reference_id,
-            "reference_type": reference_type,
-            "title": title,
-            "author": author,
-            "year": int(year),
-            "publisher": publisher,
-            "address": address,
-            "journal": journal,
-            "volume": volume,
-            "number": number,
-            "pages": pages,
-            "month": month,
-            "note": note,
-            "booktitle": booktitle,
-            "editor": editor,
-            "series": series,
-            "organization": organization,
-        },
+        reference.to_dict()
     )
     db.session.commit()
 
