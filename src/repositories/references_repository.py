@@ -103,7 +103,7 @@ def get_reference_id():
 
 def delete_reference(reference):
     sql = text("""
-        DELETE FROM References
+        DELETE FROM Reference
         WHERE id = :reference_id
     """)
     db.session.execute(sql, {"reference_id":reference})

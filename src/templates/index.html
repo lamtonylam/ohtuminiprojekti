@@ -6,7 +6,7 @@
 
 {% block body %}
 
-  <h2 class="text-center my-4 text-success">References Management App</h2>
+  <h1 class="text-center my-4 text-success">References Management App</h1>
   <div class="table-container mb-4">
     <table class="table table-striped table-boarded">
       <thead>
@@ -15,7 +15,19 @@
           <th>Reference ID</th>
           <th>Author</th>
           <th>Title</th>
-          <th>Details</th>
+          <th>
+            <button 
+              type="button" 
+              id="toggle-all-details" 
+              name="show_all_details_button" 
+              class="btn btn-warning" 
+              title="Shows all the details for every field">
+              Details
+            </button>
+          </th>
+          <th>
+            <a href="/reset" class="btn btn-warning" title="Reset database" id="reset-button">Reset</a>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -29,8 +41,7 @@
               <div
               class="details"
               id="details_{{ reference.id }}"
-              style="display:none;"
-              >
+              style="display:none;">
                 {% if reference.year %}Year: {{ reference.year }}<br />{% endif %}
                 {% if reference.booktitle %}Booktitle: {{ reference.booktitle }}<br />{% endif %}
                 {% if reference.editor %}Editor: {{ reference.editor }}<br />{% endif %}
@@ -47,12 +58,17 @@
               </div>
               <button
                 type="button"
-                class="toggle-btn"
+                id="toggle-btn"
                 name="show_more_button"
                 data-ref-id="{{ reference.id }}"
-              >
+                class="btn btn-success">
                 Show more
               </button>
+            </td>
+            <td>
+              <form action="/delete/{{ reference.id }}" method="POST">
+                <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+              </form>
             </td>
           </tr>
         {% endfor %}
@@ -61,24 +77,60 @@
   </div>
 
   <script>
-    // Function to toggle the visibility of the details section for each reference
-    document.querySelectorAll(".toggle-btn").forEach((button) => {
-      button.addEventListener("click", () => {
-        const refId = button.getAttribute("data-ref-id");
+    const toggleAllDetailsBtn = document.getElementById('toggle-all-details');
+    toggleAllDetailsBtn.addEventListener('click', () => {
+      // Get all toggle buttons
+      const allToggleButtons = document.querySelectorAll('#toggle-btn');
+
+      // Trigger a click on each button
+      allToggleButtons.forEach((button) => {
+        button.click();
+      });
+
+      // Update the "Show all details" button text based on the state of the first detail's visibility
+      const firstDetailsSection = document.querySelector('.details');
+      const allDetailsVisible = firstDetailsSection.style.display !== 'none';
+      toggleAllDetailsBtn.textContent = allDetailsVisible ? 'Hide all details' : 'Details';
+    });
+
+    // Individual show/hide buttons for each row 
+    document.querySelectorAll('#toggle-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        const refId = button.getAttribute('data-ref-id');
         const detailsSection = document.getElementById(`details_${refId}`);
-        const isVisible = detailsSection.style.display === "block";
+        const isVisible = detailsSection.style.display === 'block';
 
         // Toggle the visibility: show if hidden, hide if visible
-        detailsSection.style.display = isVisible ? "none" : "block";
+        detailsSection.style.display = isVisible ? 'none' : 'block';
+
         // Change the button text based on visibility
-        button.textContent = isVisible ? "Show more" : "Hide";
+        button.textContent = isVisible ? 'Show more' : 'Hide';
+      });
+    });
+
+    // Confirmation for reset button
+    const resetButton = document.getElementById('reset-button');
+    resetButton.addEventListener('click', (event) => {
+    const userConfirmedReset = confirm('Are you sure you want to reset the entire database?');
+    if (!userConfirmedReset) {
+      event.preventDefault();
+    }
+    });
+
+    // Confirmation for delete button
+    document.querySelectorAll('.btn-danger[name="delete"]').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const userConfirmed = confirm('Are you sure you want to delete this reference?');
+        if (!userConfirmed) {
+          event.preventDefault();
+        }
       });
     });
   </script>
+
   <div class="container-fluid mb-4">
     <a href="/new_reference" class="btn btn-success" id="button_to_reference">
-      Create a new reference</a
-    >
+      Create a new reference</a>
     <form action="/download" method="GET" style="display: block;">
       <br />
       <button type="submit" name="download"  class="btn btn-success">Download</button>
@@ -86,11 +138,24 @@
     <br />
     <a href="/preview" class="btn btn-success" id="button_to_preview">Preview</a>
   </div>
-  {% with messages = get_flashed_messages() %}{% if messages %}
-    <ul>
-      {% for message in messages %}
-        <li>{{ message }}</li>
+  
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+      {% for category, message in messages %}
+        <div class="alert {{ 'alert-success' if category == 'Added' else 'alert-danger' }}" id="flash-alert">
+          <h5>{{ message }}</h5>
+        </div>
       {% endfor %}
-    </ul>
-  {% endif %}{% endwith %}
+  {% endif %}
+  {% endwith %}
+
+  <script>
+    // Automatically hide the flash messages after 3 seconds
+    setTimeout(() => {
+      const flashMessages = document.getElementById('flash-alert');
+      if (flashMessages) {
+        flashMessages.style.display = 'none';
+      }
+    }, 3000);
+  </script>
 {% endblock %}
