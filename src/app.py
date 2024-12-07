@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
-from repositories.references_repository import get_references, create_reference
+from repositories.references_repository import get_references, create_reference, delete_reference
 from config import app, test_env, populate_env
 from validate import validate_book, validate_article, validate_inproceedings
 from populate_test_data import populate_database
@@ -132,6 +132,11 @@ def getBibtexFile():
         mimetype="text/plain",
         headers={"Content-disposition": "attachment; filename=references.bib"},
     )
+
+@app.route("/delete/<int:reference>", methods=["POST"])
+def delete(reference):
+    delete_reference(reference)
+    return redirect("/")
 
 
 # testausta varten oleva reitti
