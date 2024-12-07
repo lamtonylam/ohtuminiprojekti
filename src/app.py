@@ -31,7 +31,11 @@ def new():
 @app.route("/create_reference", methods=["POST"])
 def reference_creation():
     # mandatory fields
-    reference_id = request.form.get("reference_id")
+    # create reference_id from first 3 chars of title and year
+    title = request.form.get("title")
+    year = request.form.get("year")
+    reference_id = title[:3] + year
+
     author = request.form.get("author")
     title = request.form.get("title")
     year = request.form.get("year")
@@ -66,12 +70,11 @@ def reference_creation():
                 number,
                 pages,
                 month,
-                note
+                note,
             )
 
         elif reference_type == "book":
-            validate_book(reference_id, author, year,
-                          title, publisher, address)
+            validate_book(reference_id, author, year, title, publisher, address)
 
         elif reference_type == "inproceedings":
             validate_inproceedings(
@@ -88,7 +91,7 @@ def reference_creation():
                 address,
                 month,
                 organization,
-                publisher
+                publisher,
             )
 
         # Inputs given as arguments to the validation function //found in validate.py
