@@ -1,10 +1,10 @@
 import unittest
 from validate import (
-    validate_inproceedings,
+    validate_reference,
     UserInputError,
-    validate_article,
 )
 from config import app
+from entities.references import References
 
 
 class TestValidator(unittest.TestCase):
@@ -13,6 +13,7 @@ class TestValidator(unittest.TestCase):
         self.app_context.push()
         self.valid_inproceedings = {
             "reference_id": "ref001",
+            "reference_type": "inproceedings",
             "author": "John Doe",
             "title": "An Innovative Approach to AI",
             "booktitle": "Proceedings of the AI Conference",
@@ -30,6 +31,7 @@ class TestValidator(unittest.TestCase):
 
         self.valid_article = {
             "reference_id": "ref002",
+            "reference_type": "article",
             "author": "Smith, John and Doe, Jane",
             "title": "An Example Article for BibTeX",
             "journal": "Journal of Examples",
@@ -43,6 +45,7 @@ class TestValidator(unittest.TestCase):
 
         self.valid_book = {
             "reference_id": "ref003",
+            "reference_type": "book",
             "author": "Johnson, Emily and Brown, Michael",
             "year": "2023",
             "title": "An Example Book for BibTeX",
@@ -53,31 +56,31 @@ class TestValidator(unittest.TestCase):
     def test_input_not_string(self):
         self.valid_inproceedings["reference_id"] = 123
         with self.assertRaises(UserInputError):
-            validate_inproceedings(*self.valid_inproceedings)
+            validate_reference(References(**self.valid_inproceedings))
 
     def test_input_negative_int(self):
         self.valid_inproceedings["volume"] = "-5"
         with self.assertRaises(UserInputError):
-            validate_inproceedings(*self.valid_inproceedings)
+            validate_reference(References(**self.valid_inproceedings))
 
     def test_input_negative_year(self):
         self.valid_inproceedings["year"] = "3020"
         with self.assertRaises(UserInputError):
-            validate_inproceedings(*self.valid_inproceedings)
+            validate_reference(References(**self.valid_inproceedings))
 
     def test_invalid_month(self):
         self.valid_inproceedings["month"] = "Octember"
         with self.assertRaises(UserInputError):
-            validate_inproceedings(*self.valid_inproceedings)
+            validate_reference(References(**self.valid_inproceedings))
 
     def test_required_field_missing(self):
         del self.valid_inproceedings["title"]
-        with self.assertRaises(TypeError):
-            validate_inproceedings(*self.valid_inproceedings)
+        with self.assertRaises(UserInputError):
+            validate_reference(References(**self.valid_inproceedings))
 
     def test_valid_input(self):
         try:
-            validate_inproceedings(**self.valid_inproceedings)
+            validate_reference(References(**self.valid_inproceedings))
         except UserInputError:
             self.fail(
                 "validate_inproceedings raised UserInputError unexpectedly!")
@@ -85,22 +88,22 @@ class TestValidator(unittest.TestCase):
     def test_article_input_not_string(self):
         self.valid_article["author"] = 222
         with self.assertRaises(UserInputError):
-            validate_article(*self.valid_article)
+            validate_reference(References(**self.valid_article))
 
     def test_article_input_negative_int(self):
         self.valid_article["volume"] = -23
         with self.assertRaises(UserInputError):
-            validate_article(*self.valid_article)
+            validate_reference(References(**self.valid_article))
 
     def test_article_input_negative_year(self):
         self.valid_article["year"] = -11
         with self.assertRaises(UserInputError):
-            validate_article(*self.valid_article)
+            validate_reference(References(**self.valid_article))
 
     def test_article_invalid_month(self):
         self.valid_article["month"] = "joulukuu"
         with self.assertRaises(UserInputError):
-            validate_article(*self.valid_article)
+            validate_reference(References(**self.valid_article))
 
     def tearDown(self):
         self.app_context.pop()

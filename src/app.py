@@ -2,9 +2,10 @@ from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
 from repositories.references_repository import get_references, create_reference
 from config import app, test_env, populate_env
-from validate import validate_book, validate_article, validate_inproceedings
+from validate import validate_reference
 from populate_test_data import populate_database
 from bibtex_parser import reference_bibtex_parser
+from entities.references import References
 
 
 @app.route("/")
@@ -30,87 +31,35 @@ def new():
 
 @app.route("/create_reference", methods=["POST"])
 def reference_creation():
-    # mandatory fields
-    reference_id = request.form.get("reference_id")
-    author = request.form.get("author")
-    title = request.form.get("title")
-    year = request.form.get("year")
-    reference_type = request.form.get("reference_type")
-    print(reference_type)
-
-    # optional fields
-    booktitle = request.form.get("booktitle") or None
-    editor = request.form.get("editor") or None
-    volume = request.form.get("volume") or None
-    number = request.form.get("number") or None
-    series = request.form.get("series") or None
-
-    # reference_type = "book"
-    journal = request.form.get("journal") or None
-    note = request.form.get("note") or None
-    pages = request.form.get("pages") or None
-    address = request.form.get("address") or None
-    month = request.form.get("month") or None
-    organization = request.form.get("organization") or None
-    publisher = request.form.get("publisher") or None
+    mandatory_fields = ["reference_id", "author", "title", "year", "reference_type"]
+    optional_fields = [
+        "booktitle", "editor", "volume", "number", "series", "journal", "note",
+        "pages", "address", "month", "organization", "publisher"
+    ]
 
     try:
-        if reference_type == "article":
-            validate_article(
-                reference_id,
-                author,
-                title,
-                journal,
-                year,
-                volume,
-                number,
-                pages,
-                month,
-                note
-            )
+        # mandatory fields
+        reference_data = {field: request.form.get(field) for field in mandatory_fields}
+        for field, value in reference_data.items():
+            if not value:
+                raise ValueError(f"Missing mandatory field: {field}")
 
-        elif reference_type == "book":
-            validate_book(reference_id, author, year,
-                          title, publisher, address)
+        # optional fields
+        reference_data.update({field: request.form.get(field) or None for field in optional_fields})
 
-        elif reference_type == "inproceedings":
-            validate_inproceedings(
-                reference_id,
-                author,
-                title,
-                booktitle,
-                year,
-                editor,
-                volume,
-                number,
-                series,
-                pages,
-                address,
-                month,
-                organization,
-                publisher
-            )
-
-        # Inputs given as arguments to the validation function //found in validate.py
-        create_reference(
-            reference_id,
-            reference_type,
-            title,
-            author,
-            year,
-            booktitle,
-            editor,
-            volume,
-            number,
-            series,
-            pages,
-            address,
-            journal,
-            month,
-            note,
-            organization,
-            publisher,
+        # create a References object using keyword arguments
+        reference = References(
+            id=None,          # id is managed by db
+            created_at=None,  # created_at not needed here
+            **reference_data  # unpack dictionary to arguments
         )
+
+        # validate reference
+        validate_reference(reference)
+
+        # store reference to db
+        create_reference(reference)
+
         flash("Added succesfully")
         return redirect("/")
     except Exception as error:
