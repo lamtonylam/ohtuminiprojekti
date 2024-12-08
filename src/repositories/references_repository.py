@@ -16,7 +16,6 @@ def get_references():
         )
     )
     references_result = result.fetchall()
-    print(references_result)
     return [
         References(
             id=reference.id,
