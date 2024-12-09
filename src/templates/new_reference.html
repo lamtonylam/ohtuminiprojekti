@@ -225,13 +225,17 @@
       </div>
     </div>
   </div>
-  <div>  {% with messages = get_flashed_messages() %}{% if messages %}
-    <ul>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="container-fluid d-flex justify-content-center align-items-center">
       {% for message in messages %}
-        <li>{{ message }}</li>
+        <div class="alert alert-danger" id="flash-alert">
+          <h5>{{ message }}</h5>
+        </div>
       {% endfor %}
-    </ul>
-  {% endif %}{% endwith %}</div>
+    </div>
+  {% endif %}
+{% endwith %}
   <script>
     function toggleFields() {
       const type = document.getElementById("type").value;
@@ -243,5 +247,13 @@
       document.getElementById("book_fields").style.display =
         type === "book" ? "block" : "none";
     }
+
+    // Automatically hide the flash messages after 3 seconds
+    setTimeout(() => {
+    const flashMessages = document.getElementById('flash-alert');
+    if (flashMessages) {
+      flashMessages.style.display = 'none';
+    }
+  }, 3000);
   </script>
 {% endblock %}

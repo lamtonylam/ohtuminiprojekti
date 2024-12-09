@@ -99,3 +99,11 @@ def get_reference_id():
     result = db.session.execute(text("SELECT reference_id FROM reference"))
     references = result.fetchall()
     return [item[0] for item in references]
+
+def delete_reference(reference):
+    sql = text("""
+        DELETE FROM Reference
+        WHERE id = :reference_id
+    """)
+    db.session.execute(sql, {"reference_id":reference})
+    db.session.commit()
