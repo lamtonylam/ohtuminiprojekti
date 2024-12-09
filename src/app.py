@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
-from repositories.references_repository import get_references, create_reference
+from repositories.references_repository import get_references, create_reference, delete_reference
 from config import app, test_env, populate_env
 from validate import validate_book, validate_article, validate_inproceedings
 from populate_test_data import populate_database
@@ -31,12 +31,15 @@ def new():
 @app.route("/create_reference", methods=["POST"])
 def reference_creation():
     # mandatory fields
-    reference_id = request.form.get("reference_id")
+    # create reference_id from first 3 chars of title and year
+    title = request.form.get("title")
+    year = request.form.get("year")
+    reference_id = title[:3] + year
+
     author = request.form.get("author")
     title = request.form.get("title")
     year = request.form.get("year")
     reference_type = request.form.get("reference_type")
-    print(reference_type)
 
     # optional fields
     booktitle = request.form.get("booktitle") or None
@@ -66,12 +69,11 @@ def reference_creation():
                 number,
                 pages,
                 month,
-                note
+                note,
             )
 
         elif reference_type == "book":
-            validate_book(reference_id, author, year,
-                          title, publisher, address)
+            validate_book(reference_id, author, year, title, publisher, address)
 
         elif reference_type == "inproceedings":
             validate_inproceedings(
@@ -88,7 +90,7 @@ def reference_creation():
                 address,
                 month,
                 organization,
-                publisher
+                publisher,
             )
 
         # Inputs given as arguments to the validation function //found in validate.py
@@ -111,7 +113,7 @@ def reference_creation():
             organization,
             publisher,
         )
-        flash("Added successfully")
+        flash("Reference added successfully!", "Added")
         return redirect("/")
     except Exception as error:
         flash(str(error))
@@ -133,6 +135,18 @@ def getBibtexFile():
         headers={"Content-disposition": "attachment; filename=references.bib"},
     )
 
+# Deletes the row identified by the ID
+@app.route("/delete/<int:reference>", methods=["POST"])
+def delete(reference):
+    delete_reference(reference)
+    flash("Reference is deleted!", "Deleted")
+    return redirect("/")
+
+# Resets data base when user clicks on Reset button
+@app.route("/reset", methods=["GET"])
+def reset():
+    reset_db()
+    return redirect("/")
 
 # testausta varten oleva reitti
 if test_env:
