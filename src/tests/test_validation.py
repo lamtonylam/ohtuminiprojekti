@@ -13,7 +13,7 @@ class TestValidation(unittest.TestCase):
 
     def test_validate_book_valid(self):
         try:
-            validate_book("ref01", "Author Name", 2023, "Book Title", "Publisher", "City")
+            validate_book("ref01", "Author Name", "2023", "Book Title", "Publisher", "City")
         except Exception:
             self.fail("validate_book raised an exception unexpectedly!")
 

@@ -3,12 +3,8 @@ source = src
 omit =
     src/config.py
     src/test_data.py
-    src/app.py
     src/index.py
     src/db_helper.py
     src/bibtex_parser.py
     src/tests/__init__.py
-    src/repositories/references_repository.py
     src/populate_test_data.py
-    src/tests/bibtex_parser_test.py
-    src/entities/references.py
