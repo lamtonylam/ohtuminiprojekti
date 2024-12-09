@@ -111,7 +111,7 @@ def reference_creation():
             organization,
             publisher,
         )
-        flash("Added succesfully")
+        flash("Added successfully")
         return redirect("/")
     except Exception as error:
         flash(str(error))
