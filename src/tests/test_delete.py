@@ -41,5 +41,4 @@ class TestDeleteReference(unittest.TestCase):
 
         # Check if the reference is deleted from the database
         references_1 = get_references()
-        self.assertEqual(len(references_1), 0) 
-        
+        self.assertEqual(len(references_1), 0)
