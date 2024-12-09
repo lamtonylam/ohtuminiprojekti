@@ -139,7 +139,7 @@ def getBibtexFile():
 @app.route("/delete/<int:reference>", methods=["POST"])
 def delete(reference):
     delete_reference(reference)
-    flash(f"Reference is deleted!", "Deleted")
+    flash("Reference is deleted!", "Deleted")
     return redirect("/")
 
 # Resets data base when user clicks on Reset button
