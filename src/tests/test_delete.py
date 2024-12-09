@@ -1,4 +1,4 @@
-from app import create_reference, get_references, delete
+from app import get_references
 from db_helper import reset_db
 import unittest
 from config import app
@@ -42,3 +42,4 @@ class TestDeleteReference(unittest.TestCase):
         # Check if the reference is deleted from the database
         references_1 = get_references()
         self.assertEqual(len(references_1), 0) 
+        
