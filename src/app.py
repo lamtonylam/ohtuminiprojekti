@@ -1,6 +1,10 @@
 from flask import redirect, render_template, request, jsonify, flash, Response
 from db_helper import reset_db
-from repositories.references_repository import get_references, create_reference, delete_reference
+from repositories.references_repository import (
+    get_references,
+    create_reference,
+    delete_reference,
+)
 from config import app, test_env, populate_env
 from validate import validate_book, validate_article, validate_inproceedings
 from populate_test_data import populate_database
@@ -34,7 +38,12 @@ def reference_creation():
     # create reference_id from first 3 chars of title and year
     title = request.form.get("title")
     year = request.form.get("year")
-    reference_id = title[:3] + year
+
+    references = get_references()
+    if references:
+        reference_id = f"ref{references[-1].id + 1}"
+    else:
+        reference_id = "ref1"
 
     author = request.form.get("author")
     title = request.form.get("title")
@@ -135,6 +144,7 @@ def getBibtexFile():
         headers={"Content-disposition": "attachment; filename=references.bib"},
     )
 
+
 # Deletes the row identified by the ID
 @app.route("/delete/<int:reference>", methods=["POST"])
 def delete(reference):
@@ -142,11 +152,13 @@ def delete(reference):
     flash("Reference is deleted!", "Deleted")
     return redirect("/")
 
+
 # Resets data base when user clicks on Reset button
 @app.route("/reset", methods=["GET"])
 def reset():
     reset_db()
     return redirect("/")
+
 
 # testausta varten oleva reitti
 if test_env:

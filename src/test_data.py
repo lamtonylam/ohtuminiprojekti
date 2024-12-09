@@ -1,7 +1,7 @@
 
 test_data = [
     {
-        "reference_id": "ref01",
+        "reference_id": "ref1",
         "reference_type": "inproceedings",
         "title": "Advances in AI",
         "author": "Alice Johnson",
@@ -11,7 +11,7 @@ test_data = [
         "organization": "AI Society"
     },
     {
-        "reference_id": "ref02",
+        "reference_id": "ref2",
         "reference_type": "article",
         "title": "Deep Learning Insights",
         "author": "Bob Smith",
@@ -21,7 +21,7 @@ test_data = [
         "number": 3
     },
     {
-        "reference_id": "ref03",
+        "reference_id": "ref3",
         "reference_type": "book",
         "title": "Data Science Fundamentals",
         "author": "Clara White",
