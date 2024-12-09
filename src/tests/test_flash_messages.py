@@ -1,5 +1,5 @@
 from app import reference_creation
-from flask import Flask, request
+from flask import Flask
 import unittest
 
 class TestFlashMessages(unittest.TestCase):

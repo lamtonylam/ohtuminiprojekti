@@ -5,7 +5,7 @@ import unittest
 from config import app
 
 class TestDatabaseOperations(unittest.TestCase):
-    
+
     def setUp(self):
         # Push the app context to use the Flask app's resources
         self.app_context = app.app_context()

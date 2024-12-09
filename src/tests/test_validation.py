@@ -1,8 +1,8 @@
 import unittest
-from validate import validate_book, validate_article, validate_inproceedings, UserInputError
+from validate import validate_book, validate_article, UserInputError
 from db_helper import reset_db
 from config import app
-
+#pylint: disable = E1120
 class TestValidation(unittest.TestCase):
 
     def setUp(self):
@@ -23,4 +23,5 @@ class TestValidation(unittest.TestCase):
 
     def test_validate_article_invalid_year(self):
         with self.assertRaises(UserInputError):
-            validate_article("ref02", "Author Name", "Article Title", "Journal Name", "abcd", 1, 2, "10-20", "Jan", None)
+            validate_article("ref02", "Author Name", "Article Title",
+                             "Journal Name", "abcd", 1, 2, "10-20", "Jan", None)
