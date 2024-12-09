@@ -13,7 +13,6 @@ Reference Table Is Visible To User
 Reference Is Added To The Table After It Is Created
     Go To Form Page
     Form Page Should Be Open
-    Set Reference_id  TestId
     Set Author  TestAuthor
     Set Title  TestTitle
     Set Booktitle  TestBooktitle
@@ -22,7 +21,6 @@ Reference Is Added To The Table After It Is Created
     Click Button  Create
     Starting Page Should Be Open
     Table Should Be Visible
-    Table Should Contain Reference  TestId
     Table Should Contain Author  TestAuthor
     Table Should Contain Title  TestTitle
     Press Show More

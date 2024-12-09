@@ -30,22 +30,12 @@
         <fieldset>
           <legend>Required Fields</legend>
           <div class="row">
-            <div class="col-md-6 mb-3">
               <input
                 type="hidden"
                 class="reference_type"
                 name="reference_type"
                 value="inproceedings"
               />
-              <label for="inproceeding_reference_id">Reference ID:</label>
-              <input
-                class="form-control form-control-sm"
-                type="text"
-                name="reference_id"
-                id="inproceeding_reference_id"
-                required
-              />
-            </div>
             <div class="col-md-6 mb-3">
               <label for="inproceeding_author">Author:</label>
               <input
@@ -141,17 +131,13 @@
         <form action="/create_reference" method="post">
           <fieldset>
             <legend>Required Fields</legend>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="article_reference_id">Reference ID:</label>
-                <input
-                  type="hidden"
-                  class="reference_type"
-                  name="reference_type"
-                  value="article"
-                />
-                <input class="form-control form-control-sm" type="text" name="reference_id" id="article_reference_id" required /><br />
-              </div>
+            <div class="row">                
+              <input
+              type="hidden"
+              class="reference_type"
+              name="reference_type"
+              value="article"
+            />
               <div class="col-md-6 mb-3">
                 <label for="article_author">Author:</label>
                 <input class="form-control form-control-sm" type="text" name="author" id="article_author" required /><br />
@@ -206,16 +192,12 @@
           <fieldset>
             <legend>Required Fields</legend>
             <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="book_reference_id">Reference ID:</label>
                 <input
                   type="hidden"
                   class="reference_type"
                   name="reference_type"
                   value="book"
                 />
-                <input class="form-control form-control-sm" type="text" name="reference_id" id="book_reference_id" required /><br />
-              </div>
               <div class="col-md-6 mb-3">
                 <label for="book_author">Author:</label>
                 <input class="form-control form-control-sm" type="text" name="author" id="book_author" required /><br />
@@ -243,13 +225,17 @@
       </div>
     </div>
   </div>
-  <div>  {% with messages = get_flashed_messages() %}{% if messages %}
-    <ul>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="container-fluid d-flex justify-content-center align-items-center">
       {% for message in messages %}
-        <li>{{ message }}</li>
+        <div class="alert alert-danger" id="flash-alert">
+          <h5>{{ message }}</h5>
+        </div>
       {% endfor %}
-    </ul>
-  {% endif %}{% endwith %}</div>
+    </div>
+  {% endif %}
+{% endwith %}
   <script>
     function toggleFields() {
       const type = document.getElementById("type").value;
@@ -261,5 +247,13 @@
       document.getElementById("book_fields").style.display =
         type === "book" ? "block" : "none";
     }
+
+    // Automatically hide the flash messages after 3 seconds
+    setTimeout(() => {
+    const flashMessages = document.getElementById('flash-alert');
+    if (flashMessages) {
+      flashMessages.style.display = 'none';
+    }
+  }, 3000);
   </script>
 {% endblock %}

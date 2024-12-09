@@ -12,7 +12,6 @@ ${BIBTEX_FILE}    references.bib
 Download Bibtex File
     Go To Form Page
     Form Page Should Be Open
-    Set Reference_id  TestId
     Set Author  TestAuthor
     Set Title  TestTitle
     Set Booktitle  TestBooktitle
@@ -20,7 +19,6 @@ Download Bibtex File
     Scroll Down  1000
     Click Button  Create
     Starting Page Should Be Open
-    Page Should Contain    TestId
     Page Should Contain    TestAuthor
 
     Go To Starting Page
