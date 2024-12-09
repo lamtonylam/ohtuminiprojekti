@@ -40,7 +40,6 @@ def reference_creation():
     title = request.form.get("title")
     year = request.form.get("year")
     reference_type = request.form.get("reference_type")
-    print(reference_type)
 
     # optional fields
     booktitle = request.form.get("booktitle") or None
