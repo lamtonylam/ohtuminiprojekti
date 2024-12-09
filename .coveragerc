@@ -6,6 +6,5 @@ omit =
     src/index.py
     src/db_helper.py
     src/tests/__init__.py
-    src/repositories/references_repository.py
     src/populate_test_data.py
     src/tests/bibtex_parser_test.py

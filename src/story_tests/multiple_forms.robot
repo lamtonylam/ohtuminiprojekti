@@ -35,36 +35,3 @@ Create Book Reference With Required Fields
     Page Should Contain    Robert Brown
     Page Should Contain    Test Book
 
-*** Keywords ***
-Go To References Page
-    Go To    ${HOME_URL}/new_reference
-
-Select Reference Type
-    [Arguments]    ${type}
-    Select From List By Value    id=type    ${type}
-
-Set Inproceeding Required Fields
-    [Arguments]        ${author}    ${title}    ${booktitle}    ${year}
-    Input Text    id=inproceeding_author    ${author}
-    Input Text    id=inproceeding_title    ${title}
-    Input Text    id=inproceeding_booktitle    ${booktitle}
-    Input Text    id=inproceeding_year    ${year}
-
-Set Article Required Fields
-    [Arguments]    ${author}    ${title}    ${journal}    ${year}
-    Input Text    id=article_author    ${author}
-    Input Text    id=article_title    ${title}
-    Input Text    id=article_journal    ${journal}
-    Input Text    id=article_year    ${year}
-
-Set Book Required Fields
-    [Arguments]       ${author}    ${year}    ${title}    ${publisher}    ${address}
-    Input Text    id=book_author    ${author}
-    Input Text    id=book_year    ${year}
-    Input Text    id=book_title    ${title}
-    Input Text    id=book_publisher    ${publisher}
-    Input Text    id=book_address    ${address}
-
-Click Submit Button
-    [Arguments]    ${button_id}
-    Click Button     ${button_id}
