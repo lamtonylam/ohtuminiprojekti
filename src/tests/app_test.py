@@ -52,7 +52,6 @@ class TestFlaskApp(unittest.TestCase):
         response = self.client.post(
             "/create_reference",
             data={
-                "reference_id": "ref02",
                 "reference_type": "improceedings",
                 "author": "John Doe",
                 "title": "Sample imp",
@@ -69,7 +68,7 @@ class TestFlaskApp(unittest.TestCase):
         references = get_references()
         print(references)
         self.assertEqual(len(references), 1)
-        self.assertEqual(references[0].reference_id, "ref02")
+        self.assertEqual(references[0].reference_id, "Sam2023")
 
     def test_download_route(self):
         # Add a reference
