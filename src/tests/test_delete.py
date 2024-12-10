@@ -34,7 +34,6 @@ class TestDeleteReference(unittest.TestCase):
         self.assertEqual(len(references), 1)
         self.assertEqual(references[0].reference_id, "ref1")
 
-
         # Delete the reference
         reference_id = references[0].id  # Get the reference_id instead of 'id'
         response = self.client.post(f"/delete/{reference_id}", follow_redirects=True)
