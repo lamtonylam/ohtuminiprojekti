@@ -1,4 +1,3 @@
-from app import reference_creation
 from config import app
 from db_helper import reset_db
 import unittest
