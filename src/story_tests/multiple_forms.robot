@@ -12,6 +12,7 @@ Create Inproceeding Reference With Required Fields
     Scroll Down  1000
     Click Submit Button    create_inproceeding
     Starting Page Should Be Open
+    Page Should Contain    ref1
     Page Should Contain    John Doe
     Page Should Contain    Test Title
 
@@ -22,6 +23,7 @@ Create Article Reference With Required Fields
     Scroll Down  1000
     Click Submit Button    create_article
     Starting Page Should Be Open
+    Page Should Contain    ref1
     Page Should Contain    Jane Smith
     Page Should Contain    Test Article
 
@@ -32,6 +34,26 @@ Create Book Reference With Required Fields
     Scroll Down  1000
     Click Submit Button    create_book
     Starting Page Should Be Open
+    Page Should Contain    ref1
     Page Should Contain    Robert Brown
     Page Should Contain    Test Book
 
+Creating Two References Results in Two Different Sequential Reference_ids
+    Go To References Page
+    Select Reference Type    book
+    Set Book Required Fields      Robert Brown    2023    Test Book    Test Publisher    Test Address
+    Scroll Down  1000
+    Click Submit Button    create_book
+    Starting Page Should Be Open
+    Page Should Contain    ref1
+    Page Should Contain    Robert Brown
+    Page Should Contain    Test Book
+    Go To References Page
+    Select Reference Type    article
+    Set Article Required Fields      Jane Smith    Test Article    Test Journal    2023
+    Scroll Down  1000
+    Click Submit Button    create_article
+    Starting Page Should Be Open
+    Page Should Contain    ref2
+    Page Should Contain    Jane Smith
+    Page Should Contain    Test Article
