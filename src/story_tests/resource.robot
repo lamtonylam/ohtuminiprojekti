@@ -48,7 +48,6 @@ Form Page Should Be Open
 
 Preview Page Should Be Open
     Page Should Contain  Preview
-#??? page doesent contain anythin for now
 
 Set Reference_id
     [Arguments]  ${reference_id}
@@ -111,5 +110,22 @@ Click Submit Button
     [Arguments]    ${button_id}
     Click Button     ${button_id}
  
+Create Book And Article Reference With Required Fields
+    Go To References Page
+    Select Reference Type    book
+    Set Book Required Fields      Robert Brown    2023    Test Book    Test Publisher    Test Address
+    Scroll Down  1000
+    Click Submit Button    create_book
 
-    
+    Go To References Page
+    Select Reference Type    article
+    Set Article Required Fields      Jane Smith    Test Article    Test Journal    2023
+    Scroll Down  1000
+    Click Submit Button    create_article
+
+Input Text To Search bar
+    [Arguments]  ${search_text}
+    Input Text  id=search-bar  ${search_text}
+
+No References Should Be Visible
+    Element Should Not Be Visible  table-row

@@ -23,5 +23,4 @@ Navigate to Preview Page From Home Page
 Navigate to Home Page From Preview Page
     Go To Preview Page
     Click Element  id=link_to_homepage
-#somthing funky going on!?
     Starting Page Should Be Open
