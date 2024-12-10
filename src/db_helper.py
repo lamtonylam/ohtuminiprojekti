@@ -26,6 +26,11 @@ def reset_db():
     db.session.execute(sql)
     db.session.commit()
 
+    print(f"Resetting the serialization of table {table_name}")
+    sql_reset_serial = text(f"ALTER SEQUENCE {table_name}_id_seq RESTART WITH 1")
+    db.session.execute(sql_reset_serial)
+    db.session.commit()
+
 
 def setup_db():
     if table_exists(table_name):

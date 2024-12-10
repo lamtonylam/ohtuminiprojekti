@@ -1,17 +1,19 @@
-from app import reference_creation
-from flask import Flask
+from config import app
+from db_helper import reset_db
 import unittest
+
 
 class TestFlashMessages(unittest.TestCase):
     def setUp(self):
-        self.app = Flask(__name__)
-        self.app.secret_key = "test_key"
-        self.client = self.app.test_client()
+        self.app_context = app.app_context()
+        self.app_context.push()
+        # Create a test client
+        self.client = app.test_client()
+        reset_db()
 
     def test_reference_creation_flash_success(self):
-        with self.app.test_request_context(
-            '/create_reference', 
-            method='POST',
+        response = self.client.post(
+            "/create_reference",
             data={
                 "reference_id": "ref01",
                 "author": "Author Name",
@@ -20,7 +22,6 @@ class TestFlashMessages(unittest.TestCase):
                 "reference_type": "book",
                 "publisher": "Publisher",
                 "address": "City",
-            }
-        ):
-            response = reference_creation()
-            self.assertEqual(response.status_code, 302)  # Redirect
+            },
+        )
+        self.assertEqual(response.status_code, 302)  # Redirect

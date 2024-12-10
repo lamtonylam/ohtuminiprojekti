@@ -32,7 +32,7 @@ class TestDeleteReference(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         references = get_references()
         self.assertEqual(len(references), 1)
-        self.assertEqual(references[0].reference_id, "Sam2023")
+        self.assertEqual(references[0].reference_id, "ref1")
 
         # Delete the reference
         reference_id = references[0].id  # Get the reference_id instead of 'id'

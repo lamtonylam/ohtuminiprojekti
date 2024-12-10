@@ -68,7 +68,7 @@ class TestFlaskApp(unittest.TestCase):
         references = get_references()
         print(references)
         self.assertEqual(len(references), 1)
-        self.assertEqual(references[0].reference_id, "Sam2023")
+        self.assertEqual(references[0].reference_id, "ref1")
 
     def test_download_route(self):
         # Add a reference
