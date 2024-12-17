@@ -1,4 +1,4 @@
-def reference_bibtex_parser(references):
+def reference_bibtex_serializer(references):
     bibtex = ""
     for i in references:
         references_dict = i.to_dict()

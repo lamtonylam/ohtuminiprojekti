@@ -8,7 +8,7 @@ from repositories.references_repository import (
 from config import app, test_env, populate_env
 from validate import validate_book, validate_article, validate_inproceedings
 from populate_test_data import populate_database
-from bibtex_parser import reference_bibtex_parser
+from bibtex_serializer import reference_bibtex_serializer
 
 
 @app.route("/")
@@ -23,7 +23,7 @@ def bibtexpreview():
     references = get_references()
     return render_template(
         "preview.html",
-        reference_list_bibtex=reference_bibtex_parser(references),
+        reference_list_bibtex=reference_bibtex_serializer(references),
     )
 
 
@@ -122,7 +122,7 @@ def reference_creation():
             organization,
             publisher,
         )
-        flash("Reference added succesfully!", "Added")
+        flash("Reference added successfully!", "Added")
         return redirect("/")
     except Exception as error:
         flash(str(error))
@@ -133,7 +133,7 @@ def reference_creation():
 @app.route("/download")
 def getBibtexFile():
     references = get_references()
-    bibtex_str = reference_bibtex_parser(references)
+    bibtex_str = reference_bibtex_serializer(references)
 
     if not bibtex_str:
         flash("There are no references to download.")
